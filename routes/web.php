@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MU5TJController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get("/login", [App\Http\Controllers\UserController::class, "login"]);
+Route::get('/', [UserController::class, 'homePage'])->middleware('mustBeLoggedIn');
+Route::get("/login", [UserController::class, "login"])->name("login")->middleware('guest');
+Route::post('/login', [UserController::class, 'authenticate'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('mustBeLoggedIn');
+
+Route::get('/mu5tj', [MU5TJController::class, 'getAll'])->middleware('mustBeLoggedIn');

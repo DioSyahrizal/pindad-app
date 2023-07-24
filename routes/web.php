@@ -21,3 +21,4 @@ Route::post('/login', [UserController::class, 'authenticate'])->middleware('gues
 Route::post('/logout', [UserController::class, 'logout'])->middleware('mustBeLoggedIn');
 
 Route::get('/mu5tj', [MU5TJController::class, 'getAll'])->middleware('mustBeLoggedIn');
+Route::get('/mu5tj/create', [MU5TJController::class, 'create'])->middleware('mustBeLoggedIn');

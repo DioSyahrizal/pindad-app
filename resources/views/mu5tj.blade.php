@@ -6,10 +6,9 @@
                     <h1 class="m-0">MU5-TJ</h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">MU5-TJ</li>
-                    </ol>
+                    <div class="float-sm-right">
+                        <a href="/mu5tj/create" class="btn btn-primary">Create</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,17 +40,19 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <div>
+                                {{ $data->links() }}
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            console.log("masuk pak e")
-            $('#myTable').DataTable();
-        });
-
-    </script>
+    {{--    <script type="text/javascript">--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            $('#myTable').DataTable();--}}
+    {{--        });--}}
+    {{--    </script>--}}
 </x-layout>

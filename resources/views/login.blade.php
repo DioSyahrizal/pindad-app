@@ -1,4 +1,5 @@
-<x-layout>
+<x-auth-layout>
+
     <div class="login-wrapper">
         {{--        <div class="login-logo">--}}
         {{--            <a href="../../index2.html"><b>Admin</b>LTE</a>--}}
@@ -32,4 +33,5 @@
 
         </div>
     </div>
-</x-layout>
+</x-auth-layout>
+

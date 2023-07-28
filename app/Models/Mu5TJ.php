@@ -12,5 +12,16 @@ class Mu5TJ extends Model
         'kode_lini',
         'kode_mesin_bakar',
         'temperature',
+        'titik_11',
+        'titik_12',
+        'titik_13',
+        'titik_14',
+        'titik_15',
+        'titik_21',
+        'titik_22',
+        'titik_23',
+        'titik_24',
+        'titik_25',
+
     ];
 }

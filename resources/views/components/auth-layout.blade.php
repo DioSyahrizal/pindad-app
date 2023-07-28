@@ -14,24 +14,25 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
             integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <title>Pindad App</title>
+    @livewireStyles
 </head>
 <body class="layout-fixed">
 <!-- header ends here -->
-@if (session()->has('success'))
-    <div class="container container--narrow">
-        <div class="alert alert-success text-center">
-            {{ session('success') }}
-        </div>
-    </div>
-@endif
+{{--@if (session()->has('success'))--}}
+{{--    <div class="container container--narrow">--}}
+{{--        <div class="alert alert-success text-center">--}}
+{{--            {{ session('success') }}--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--@endif--}}
 
-@if (session()->has('error'))
-    <div class="container container--narrow">
-        <div class="alert alert-danger text-center">
-            {{ session('error') }}
-        </div>
-    </div>
-@endif
+{{--@if (session()->has('error'))--}}
+{{--    <div class="container container--narrow">--}}
+{{--        <div class="alert alert-danger text-center">--}}
+{{--            {{ session('error') }}--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--@endif--}}
 <div class="wrapper">
     {{$slot}}
 </div>
@@ -45,7 +46,7 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-
+@livewireScripts
 
 </body>
 </html>

@@ -8,7 +8,7 @@ class MU5TJController extends Controller
 {
     public function getAll()
     {
-            $data = Mu5TJ::paginate(10);
+            $data = Mu5TJ::orderBy('created_at', 'desc')->paginate(10);
             return view('mu5tj', compact('data'));
     }
 

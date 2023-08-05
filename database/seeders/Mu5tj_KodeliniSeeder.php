@@ -2,14 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Mu5Tj_kodelini;
+use App\Models\Mu5Tj_Kodelini;
 use Illuminate\Database\Seeder;
 
 class Mu5tj_KodeliniSeeder extends Seeder
 {
     public function run(): void
     {
-        Mu5Tj_kodelini::insert([
+        Mu5Tj_Kodelini::insert([
             [
                 'nama' => 'MODIF',
             ],

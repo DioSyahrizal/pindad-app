@@ -20,7 +20,7 @@
                 <div class="panel-body">
                     <div class="card">
                         <div class="card-body">
-                            <table id="myTable" class="table">
+                            <table id="myTable" class="table table-responsive-md">
                                 <thead>
                                 <tr>
                                     <th scope="col">No. Lot</th>
@@ -32,7 +32,7 @@
                                 <tbody>
                                 @foreach($data as $child)
                                     <tr>
-                                        <td>{{$child->no_lot}}</td>
+                                        <td><a href="/mu5tj/{{$child->id}}/dimensi">{{$child->no_lot}}</a></td>
                                         <td>{{$child->kode_lini}}</td>
                                         <td>{{$child->kode_mesin_bakar}}</td>
                                         <td>{{$child->temperature}}</td>

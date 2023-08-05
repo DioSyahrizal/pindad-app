@@ -21,23 +21,23 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" data-accordion="true" role="menu">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                <li id="5mm-parent" class="nav-item">
+                    <a id="5mm" href="#" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
                         <p>
                             5 mm
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="/mu5tj" class="nav-link">
+                    <ul class="nav nav-treeview" style="display: none;">
+                        <x-mu5tj-menu/>
+                        <li class="nav-item ml-3">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>MU5-TJ</p>
+                                <p>MU-5H</p>
                             </a>
                         </li>
                     </ul>
@@ -51,7 +51,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-
                         <li class="nav-item">
                             <a href="/mu6tj" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -59,9 +58,31 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+    <script>
+        $(document).ready(function () {
+            // Get the current URL path and extract the part after the domain
+            const currentPath = window.location.pathname.split('/');
+            currentPath.shift();
+            const firstPath = currentPath[0];
+            const lastPath = currentPath[currentPath.length - 1]
+            // Find the link with the matching href attribute and add the 'active' class to it
+            $('#' + firstPath).addClass('active');
+            $('#' + lastPath).addClass('active');
+
+            currentPath.forEach((path) => {
+                $('#' + path).parents('ul').removeAttr('style').css({
+                    'display': 'block'
+                }).addClass(' menu-open');
+            });
+            // Find the link with the matching href attribute and open its parent treeview
+            $('a[href="' + currentPath + '"]').parents('.treeview').addClass('menu-open');
+        });
+    </script>
 </aside>

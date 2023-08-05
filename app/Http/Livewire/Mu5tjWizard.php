@@ -3,13 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\Mu5TJ;
+use App\Models\Mu5Tj_kodelini;
 use Livewire\Component;
 
 class Mu5tjWizard extends Component
 {
     public function render()
     {
-        return view('livewire.mu5tj-wizard');
+        $kode_lini_list = Mu5Tj_kodelini::get();
+        return view('livewire.mu5tj-wizard', ['list_lini' => $kode_lini_list]);
     }
 
     public $currentStep = 1;

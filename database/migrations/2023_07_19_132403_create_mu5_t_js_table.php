@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('mu5_t_js', function (Blueprint $table) {
+        Schema::create('mu5_t_j', function (Blueprint $table) {
             $table->id();
             $table->string('no_lot');
             $table->string('kode_lini');
@@ -29,6 +29,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('mu5_t_js');
+        Schema::dropIfExists('mu5_t_j');
     }
 };

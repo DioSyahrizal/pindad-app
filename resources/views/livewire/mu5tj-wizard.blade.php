@@ -28,8 +28,15 @@
             </div>
             <div class="mb-3">
                 <label for="kode_lini" class="form-label">Kode Lini</label>
-                <input type="text" wire:model="kode_lini"
-                       class="form-control {{$errors->first('kode_lini') ? "is-invalid" : "" }}" id="kode_lini">
+                <select name="kode_lini" class="form-select {{$errors->first('kode_lini') ? "is-invalid" : "" }}"
+                        aria-label="Kode Lini" wire:model="kode_lini">
+                    <option selected>Kode Lini...</option>
+                    @foreach($list_lini as $lini)
+                        <option value="{{ $lini->id }}" @selected(old('kode_lini') == $lini->id)>
+                            {{ $lini->nama }}
+                        </option>
+                    @endforeach
+                </select>
                 @error('kode_lini')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -64,117 +71,44 @@
 
         {{-- Step 2 --}}
         <div id="step2" style="display: {{ $currentStep != 2 ? 'none' : '' }}">
-            <div class="mb-3">
-                <label for="titik_11" class="form-label">Titik 1.1</label>
-                <input type="text" wire:model="titik_11"
-                       class="form-control {{$errors->first('titik_11') ? "is-invalid" : "" }}" id="titik_11"
-                       aria-describedby="titik_11">
-                @error('titik_11')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_12" class="form-label">Titik 1.2</label>
-                <input type="text" wire:model="titik_12"
-                       class="form-control {{$errors->first('titik_12') ? "is-invalid" : "" }}" id="titik_12"
-                       aria-describedby="titik_12">
-                @error('titik_12')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_13" class="form-label">Titik 1.3</label>
-                <input type="text" wire:model="titik_13"
-                       class="form-control {{$errors->first('titik_13') ? "is-invalid" : "" }}" id="titik_13"
-                       aria-describedby="titik_13">
-                @error('titik_13')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_14" class="form-label">Titik 1.4</label>
-                <input type="text" wire:model="titik_14"
-                       class="form-control {{$errors->first('titik_14') ? "is-invalid" : "" }}" id="titik_14"
-                       aria-describedby="titik_14">
-                @error('titik_14')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_15" class="form-label">Titik 1.5</label>
-                <input type="text" wire:model="titik_15"
-                       class="form-control {{$errors->first('titik_15') ? "is-invalid" : "" }}" id="titik_15"
-                       aria-describedby="titik_15">
-                @error('titik_15')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_21" class="form-label">Titik 2.1</label>
-                <input type="text" wire:model="titik_21"
-                       class="form-control {{$errors->first('titik_21') ? "is-invalid" : "" }}" id="titik_21"
-                       aria-describedby="titik_21">
-                @error('titik_21')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_22" class="form-label">Titik 2.2</label>
-                <input type="text" wire:model="titik_22"
-                       class="form-control {{$errors->first('titik_22') ? "is-invalid" : "" }}" id="titik_22"
-                       aria-describedby="titik_22">
-                @error('titik_22')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_23" class="form-label">Titik 2.3</label>
-                <input type="text" wire:model="titik_23"
-                       class="form-control {{$errors->first('titik_23') ? "is-invalid" : "" }}" id="titik_23"
-                       aria-describedby="titik_23">
-                @error('titik_23')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_24" class="form-label">Titik 2.4</label>
-                <input type="text" wire:model="titik_24"
-                       class="form-control {{$errors->first('titik_14') ? "is-invalid" : "" }}" id="titik_24"
-                       aria-describedby="titik_24">
-                @error('titik_24')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="titik_25" class="form-label">Titik 2.5</label>
-                <input type="text" wire:model="titik_25"
-                       class="form-control {{$errors->first('titik_25') ? "is-invalid" : "" }}" id="titik_25"
-                       aria-describedby="titik_25">
-                @error('titik_25')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">5 mm</th>
+                    <th scope="col">40 mm</th>
+                </tr>
+                </thead>
+                <tbody>
+                @for($i = 1; $i <= 5; $i++)
+                    @php
+                        $key = "titik_1$i";
+                        $key2 = "titik_2$i";
+                    @endphp
+                    <tr>
+                        <th scope="row">{{$i}}</th>
+                        <td class="input--custom-group">
+                            <input type="number" wire:model="{{$key}}"
+                                   id="input-number"
+                                   min="0"
+                                   aria-describedby="{{$key}}"
+                                   placeholder="titik 1.{{$i}}"
+                            >
+                            <div class="{{$errors->first($key) ? 'error' : ''}}"/>
+                        </td>
+                        <td class="input--custom-group">
+                            <input type="number" wire:model="{{$key2}}"
+                                   id="input-number"
+                                   min="0"
+                                   aria-describedby="{{$key2}}"
+                                   placeholder="titik 2.{{$i}}"
+                            >
+                            <div class="{{$errors->first($key2)  ? 'error' : ''}}"/>
+                        </td>
+                    </tr>
+                @endfor
+                </tbody>
+            </table>
             <button class="btn btn-danger" type="button" wire:click="back(1)">Back</button>
             <button class="btn btn-primary" type="button" wire:click="secondStepSubmit">Next</button>
         </div>
@@ -190,3 +124,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#input-number').on('keydown', function (event) {
+            // Get the pressed key code
+            var keyCode = event.keyCode || event.which;
+
+            // Check if the pressed key is "e" or "-"
+            if (keyCode === 69 || keyCode === 189) {
+                // Prevent default behavior of the keypress
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+

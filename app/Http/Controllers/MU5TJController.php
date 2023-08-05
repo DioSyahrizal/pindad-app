@@ -16,4 +16,9 @@ class MU5TJController extends Controller
     {
         return view('mu5tj_create');
     }
+
+    public function viewSinglePost(Mu5TJ $mu5tj)
+    {
+        return view('mu5tj_dimensi_form', compact('mu5tj'));
+    }
 }

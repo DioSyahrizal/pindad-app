@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mu5TJ extends Model
 {
-    protected $table = 'mu5_t_js';
+    protected $table = 'mu5_t_j';
     protected $fillable = [
         'no_lot',
         'kode_lini',

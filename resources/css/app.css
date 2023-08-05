@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input--custom-group input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.input--custom-group input {
+    @apply w-full outline-0 focus:border-b-blue-900;
+}
+
+.input--custom-group input:focus + div {
+    @apply border-blue-500 h-1 w-full;
+}
+
+.input--custom-group input + div {
+    @apply border-b border-b-gray-300 h-1 w-full;
+    transition: border-bottom-color .3s ease-in-out;
+}
+
+.input--custom-group input + div.error {
+    @apply border-red-600;
+}

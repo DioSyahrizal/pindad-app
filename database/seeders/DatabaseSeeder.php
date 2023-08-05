@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(MU5TJSeeder::class);
+        $this->call(Mu5tj_KodeliniSeeder::class);
     }
 }

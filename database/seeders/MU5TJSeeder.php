@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use Illuminate\Support\Facades\DB;
 
 class MU5TJSeeder extends Seeder
 {
@@ -14,7 +13,7 @@ class MU5TJSeeder extends Seeder
         foreach (range(1,50) as $index) {
             \App\Models\Mu5TJ::create([
                 'no_lot' => $faker->randomNumber(5),
-                'kode_lini' => $faker->randomNumber(2),
+                'kode_lini' => 1,
                 'kode_mesin_bakar' => $faker->randomNumber(2),
                 'temperature' => $faker->randomFloat(2, 0, 100),
                 'titik_11' => $faker->randomFloat(2, 0, 100),

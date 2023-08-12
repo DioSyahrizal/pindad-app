@@ -10,7 +10,6 @@ return new class extends Migration {
         Schema::create('mu5_t_j', function (Blueprint $table) {
             $table->id();
             $table->string('no_lot');
-            $table->string('kode_lini');
             $table->string('kode_mesin_bakar');
             $table->integer('temperature');
             $table->integer('titik_11');

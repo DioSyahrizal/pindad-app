@@ -24,7 +24,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">No. Lot</th>
-                                    <th scope="col">Kode Lini</th>
+                                    <th scope="col">Nama Lini</th>
                                     <th scope="col">Kode Mesin Bakar</th>
                                     <th scope="col">Temperature</th>
                                 </tr>
@@ -33,7 +33,7 @@
                                 @foreach($data as $child)
                                     <tr>
                                         <td><a href="/mu5tj/{{$child->id}}/dimensi">{{$child->no_lot}}</a></td>
-                                        <td>{{$child->kode_lini}}</td>
+                                        <td>{{$child->nama_lini}}</td>
                                         <td>{{$child->kode_mesin_bakar}}</td>
                                         <td>{{$child->temperature}}</td>
                                     </tr>

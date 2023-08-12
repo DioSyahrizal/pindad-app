@@ -24,4 +24,9 @@ class Mu5TJ extends Model
         'titik_25',
 
     ];
+
+    public function kode_lini_join()
+    {
+        return $this->has(Mu5tjKodelini::class, 'kode_lini');
+    }
 }

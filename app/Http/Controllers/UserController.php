@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mu5tj_Spec;
+use App\Models\Mu5tj_Spec_Active;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

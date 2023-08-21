@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="float-sm-right">
-                        <a href="/mu5tj/create" class="btn btn-primary">Create</a>
+                        <a href="/5mm/mu5tj/longsong/hb-1/create" class="btn btn-primary">Create</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
                                         <th >{{$child->kodeLini->nama}}</th>
-                                        <td><a href="/mu5tj/{{$child->id}}/dimensi">{{$child->no_lot}}</a></td>
+                                        <td><a href="/5mm/mu5tj/longsong/hb-1/{{$child->id}}/detail">{{$child->no_lot}}</a></td>
                                         <td>
                                             <x-mu5tj-pill-status :status="$child->mato"/>
                                         </td>

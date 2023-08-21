@@ -25,3 +25,8 @@ input::-webkit-inner-spin-button {
 .input--custom-group input + div.error {
     @apply border-red-600;
 }
+
+.grid--dari {
+    display: grid;
+    grid-template-columns: 100px 100px 1fr;
+}

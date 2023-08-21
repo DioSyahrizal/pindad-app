@@ -9,11 +9,11 @@ return new class extends Migration {
     {
         Schema::table('mu5tj', function (Blueprint $table) {
             $table->after('temperature', function (Blueprint $table) {
-                $table->unsignedBigInteger('spec_id')->nullable();
-                $table->foreign('spec_id')->references('id')->on('mu5tj_specs')->restrictOnDelete();
+//                $table->unsignedBigInteger('spec_id')->nullable();
+//                $table->foreign('spec_id')->references('id')->on('mu5tj_specs')->restrictOnDelete();
                 $table->unsignedBigInteger('user_id');
                 $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete();
-                $table->string('kode')->after('spec_id');
+                $table->string('kode')->after('kode_mesin_bakar');
                 $table->integer('retry')->default(0);
                 $table->integer('mato')->default(0);
                 $table->enum('status', ['MIN', 'MAX', 'PASSED', 'MINMAX'])->default('MIN');
@@ -26,8 +26,8 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('mu5tj', function (Blueprint $table) {
-            $table->dropForeign(['spec_id']);
-            $table->dropColumn('spec_id');
+//            $table->dropForeign(['spec_id']);
+//            $table->dropColumn('spec_id');
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
             $table->dropColumn('kode');

@@ -24,6 +24,8 @@ Route::prefix('5mm')->group(function () {
     Route::prefix('/mu5tj')->group(function () {
         Route::prefix('/longsong')->group(function () {
             Route::get('/hb-1', [MU5TJController::class, 'getAll'])->middleware('mustBeLoggedIn');
+            Route::get('/hb-1/create', [MU5TJController::class, 'create'])->middleware('mustBeLoggedIn');
+            Route::get('/hb-1/{mu5tj}/detail', [MU5TJController::class, 'viewSinglePost'])->where('mu5tj', '[0-9]+')->middleware('mustBeLoggedIn');
         });
     });
 
@@ -31,4 +33,4 @@ Route::prefix('5mm')->group(function () {
 //
 //Route::get('/5mm/mu5tj/longsong/hb-1', [MU5TJController::class, 'getAll'])->middleware('mustBeLoggedIn');
 Route::get('/mu5tj/create', [MU5TJController::class, 'create'])->middleware('mustBeLoggedIn');
-Route::get('/mu5tj/{mu5tj}/dimensi', [MU5TJController::class, 'viewSinglePost'])->where('mu5tj', '[0-9]+')->middleware('mustBeLoggedIn');
+

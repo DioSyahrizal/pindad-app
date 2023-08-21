@@ -16,7 +16,7 @@ class MU5TJSeeder extends Seeder
                 'kode_lini' => 1,
                 'kode_mesin_bakar' => $faker->randomNumber(2),
                 'temperature' => $faker->randomFloat(2, 0, 100),
-                'spec_id' => 1,
+//                'spec_id' => 1,
                 'user_id' => 1,
                 'kode' => $faker->randomNumber(5),
                 'mato' => 0,

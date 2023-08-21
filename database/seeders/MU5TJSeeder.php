@@ -10,12 +10,17 @@ class MU5TJSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        foreach (range(1,50) as $index) {
+        foreach (range(1,5) as $index) {
             \App\Models\Mu5TJ::create([
                 'no_lot' => $faker->randomNumber(5),
                 'kode_lini' => 1,
                 'kode_mesin_bakar' => $faker->randomNumber(2),
                 'temperature' => $faker->randomFloat(2, 0, 100),
+                'spec_id' => 1,
+                'user_id' => 1,
+                'kode' => $faker->randomNumber(5),
+                'mato' => 0,
+                'status_bakar' => '-',
                 'titik_11' => $faker->randomFloat(2, 0, 100),
                 'titik_12' => $faker->randomFloat(2, 0, 100),
                 'titik_13' => $faker->randomFloat(2, 0, 100),

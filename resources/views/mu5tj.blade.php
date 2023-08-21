@@ -23,19 +23,25 @@
                             <table id="myTable" class="table table-responsive-md">
                                 <thead>
                                 <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Lini</th>
                                     <th scope="col">No. Lot</th>
-                                    <th scope="col">Nama Lini</th>
-                                    <th scope="col">Kode Mesin Bakar</th>
-                                    <th scope="col">Temperature</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">Tanggal</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($data as $child)
                                     <tr>
+                                        <th scope="row">{{$loop->iteration}}</th>
+                                        <th >{{$child->kodeLini->nama}}</th>
                                         <td><a href="/mu5tj/{{$child->id}}/dimensi">{{$child->no_lot}}</a></td>
-                                        <td>{{$child->nama_lini}}</td>
-                                        <td>{{$child->kode_mesin_bakar}}</td>
-                                        <td>{{$child->temperature}}</td>
+                                        <td>
+                                            <x-mu5tj-pill-status :status="$child->mato"/>
+                                        </td>
+                                        <td>{{$child->status}}</td>
+                                        <td>{{$child->tanggal_create}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -50,9 +56,9 @@
             </div>
         </div>
     </div>
-    {{--    <script type="text/javascript">--}}
-    {{--        $(document).ready(function () {--}}
-    {{--            $('#myTable').DataTable();--}}
-    {{--        });--}}
-    {{--    </script>--}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
 </x-layout>

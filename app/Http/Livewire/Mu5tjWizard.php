@@ -8,16 +8,24 @@ use Livewire\Component;
 
 class Mu5tjWizard extends Component
 {
-    public function render()
-    {
-        $kode_lini_list = Mu5tjKodelini::get();
-        return view('livewire.mu5tj-wizard', ['list_lini' => $kode_lini_list]);
-    }
 
     public $currentStep = 1;
     public $no_lot, $kode_lini, $kode_mesin_bakar, $temperature, $titik_11, $titik_12, $titik_13,
-        $titik_14, $titik_15, $titik_21, $titik_22, $titik_23, $titik_24, $titik_25;
-    public $successMessage = '';
+        $titik_14, $titik_15, $titik_21, $titik_22, $titik_23, $titik_24, $titik_25, $tahun;
+    public $statusCode = '';
+    public $isDisabledFirstStep = true;
+
+    public function render()
+    {
+        $kode_lini_list = Mu5tjKodelini::get();
+        $checkNoLot = Mu5TJ::where([['kode', '=', $this->tahun . "." . $this->no_lot], ['mato', '=', '1']])->count();
+        $this->isDisabledFirstStep = strlen($this->no_lot) <= 0 || $this->tahun !== null || $checkNoLot > 0 || $this->kode_lini === null;
+        return view('livewire.mu5tj-wizard', ['list_lini' => $kode_lini_list,
+            'isDisabledFirstStep' => $this->isDisabledFirstStep,
+            'status_code' => (strlen($this->no_lot) > 0 && $this->tahun !== null) ? ($checkNoLot > 0 ? 'danger' : 'success') : null
+        ]);
+    }
+
 
     public function back($step): void
     {
@@ -27,7 +35,8 @@ class Mu5tjWizard extends Component
     public function firstStepSubmit(): void
     {
         $this->validate([
-            'no_lot' => 'required',
+            'tahun' => 'required',
+            'no_lot' => 'required|min:5',
             'kode_lini' => 'required',
             'kode_mesin_bakar' => 'required',
             'temperature' => 'required',

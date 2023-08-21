@@ -14,7 +14,36 @@
     </ul>
     <div class="row pt-3">
         {{-- Step 1 --}}
+        @php
+            $statusOk = $status_code === 'success';
+        @endphp
         <div id="step1" class="needs-validation" style="display: {{ $currentStep != 1 ? 'none' : '' }}">
+            @if($statusOk)
+                <div class="alert alert-success" role="alert">
+                    Nomor Lot belum approved!
+                </div>
+            @elseif(!$statusOk && strlen($no_lot) > 4)
+                <div class="alert alert-danger" role="alert">
+                    Nomor Lot sudah approved!
+                </div>
+            @endif
+            <div class="mb-3">
+                <label for="tahun" class="form-label">Tahun</label>
+                <select name="tahun" class="form-select {{$errors->first('tahun') ? "is-invalid" : "" }}"
+                        aria-label="Tahun" wire:model="tahun">
+                    <option selected>Tahun...</option>
+                    @for($i = now()->year; $i >= 1990; $i--)
+                        <option value="{{ $i }}" @selected(old('tahun') == $i)>
+                            {{ $i }}
+                        </option>
+                    @endfor
+                </select>
+                @error('tahun')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
             <div class="mb-3">
                 <label for="no_lot" class="form-label">Nomor Lot</label>
                 <input type="text" wire:model="no_lot"
@@ -64,7 +93,9 @@
                 </div>
                 @enderror
             </div>
+            {{$isDisabledFirstStep}}
             <button class="btn btn-primary" wire:click="firstStepSubmit"
+                    disabled="{{$isDisabledFirstStep}}"
                     type="button">Next
             </button>
         </div>
@@ -110,7 +141,9 @@
                 </tbody>
             </table>
             <button class="btn btn-danger" type="button" wire:click="back(1)">Back</button>
-            <button class="btn btn-primary" type="button" wire:click="secondStepSubmit">Next</button>
+            <button class="btn btn-primary" type="button" wire:click="secondStepSubmit"
+            >Next
+            </button>
         </div>
 
         {{-- Step 3 --}}

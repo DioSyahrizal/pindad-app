@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(UserSeeder::class);
+        $this->call(Mu5tjLongsongFlowSeeder::class);
         $this->call(Mu5tj_KodeliniSeeder::class);
+
         $this->call(MU5TJSeeder::class);
 
     }

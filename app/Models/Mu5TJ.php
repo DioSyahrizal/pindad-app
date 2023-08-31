@@ -33,6 +33,10 @@ class Mu5TJ extends Model
 
     ];
 
+    protected $casts = [
+        'attribute' => 'array'
+    ];
+
     public function kodeLini()
     {
         return $this->hasOne(Mu5tjKodelini::class, 'id','kode_lini');

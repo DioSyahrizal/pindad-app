@@ -22,6 +22,15 @@ return new class extends Migration {
             $table->integer('titik_23');
             $table->integer('titik_24');
             $table->integer('titik_25');
+            $table->integer('kode_lini');
+            $table->integer('user_id');
+            $table->string('kode');
+            $table->integer('mato');
+            $table->string('status_bakar');
+            $table->string('status')->default('MIN');
+            $table->integer('retry')->default(0);
+            $table->timestamp('tanggal_create')->default(DB::raw('NOW()'));
+            $table->json('attribute')->nullable();
             $table->timestamps();
         });
     }

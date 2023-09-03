@@ -16,7 +16,7 @@ class UserController extends Controller
     public function authenticate(Request $request)
     {
         $incomingFields = $request->validate([
-            'email' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 

@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="border border-solid border-black px-4 py-2 text-right">
-                {{$mu5tj->kodeLini->nama}} + {{$mu5tj->no_lot}}
+                {{$mu5tj->kodeLini->nama}} {{$mu5tj->no_lot}}
             </div>
             <div class="grid grid-cols-4">
                 <div class="border border-solid border-black px-4 py-2">
@@ -103,9 +103,9 @@
                     <div class="border border-solid border-black text-center">DIPERIKSA OLEH</div>
                     <div class="grid grid-cols-2">
                         <div class="border border-solid border-black px-4 py-2">Jabatan</div>
-                        <div class="border border-solid border-black px-4 py-2">[Jabatan]</div>
+                        <div class="border border-solid border-black px-4 py-2">{{auth()->user()->jabatan}}</div>
                         <div class="border border-solid border-black px-4 py-2">Nama</div>
-                        <div class="border border-solid border-black px-4 py-2">[Nama]</div>
+                        <div class="border border-solid border-black px-4 py-2">{{auth()->user()->name}}</div>
                         <div class="border border-solid border-black px-4 py-2">Tanda Tangan</div>
                         <div class="border border-solid border-black px-4 pt-2 pb-10">[Jabatan]</div>
                     </div>

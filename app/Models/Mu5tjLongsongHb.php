@@ -4,17 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mu5TJ extends Model
+class Mu5tjLongsongHb extends Model
 {
-    protected $table = 'mu5tj';
+    protected $table = 'mu5tj_longsong_hb';
     protected $fillable = [
+        'parent_id',
         'no_lot',
-        'kode_lini',
-        'kode_mesin_bakar',
-        'temperature',
-        'spec_id',
-        'user_id',
         'kode',
+        'retry',
+        'status',
+        'status_bakar',
+        'tanggal_create',
+        'temperature',
+        'user_id',
+        'spec_id',
+        'lini_id',
         'titik_11',
         'titik_12',
         'titik_13',
@@ -25,20 +29,18 @@ class Mu5TJ extends Model
         'titik_23',
         'titik_24',
         'titik_25',
-        'retry',
-        'status',
-        'tanggal_create',
+        'mesin_bakar',
+        'waktu_bakar',
         'mato',
-        'status_bakar'
-
+        "keterangan",
     ];
 
     protected $casts = [
-        'attribute' => 'array'
+        'tanggal_create' => 'datetime',
     ];
 
     public function kodeLini()
     {
-        return $this->hasOne(Mu5tjKodelini::class, 'id','kode_lini');
+        return $this->hasOne(Mu5tjKodelini::class, 'id', 'lini_id');
     }
 }

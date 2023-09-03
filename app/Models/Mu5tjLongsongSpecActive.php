@@ -12,4 +12,9 @@ class Mu5tjLongsongSpecActive extends Model
         'lini_id',
         'flow_id',
     ];
+
+    public function specDetail()
+    {
+        return $this->hasOne(Mu5tjLongsongSpec::class, 'id', 'spec_id');
+    }
 }

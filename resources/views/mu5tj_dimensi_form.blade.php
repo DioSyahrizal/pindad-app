@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="border border-solid border-black px-4 py-2 text-right">
-                {{$mu5tj->kodeLini->nama}} + {{$mu5tj->no_lot}}
+                {{$mu5tj->kodeLini->nama}} {{$mu5tj->no_lot}}
             </div>
             <div class="grid grid-cols-4">
                 <div class="border border-solid border-black px-4 py-2">

@@ -18,8 +18,8 @@ class Mu5tjLongsongSpecsSeeder extends Seeder
                     [
                         '5mm_min' => 4.5,
                         '5mm_max' => 7.5,
-                        '40_min' => 39.5,
-                        '40_max' => 40.5,
+                        '40mm_min' => 39.5,
+                        '40mm_max' => 40.5,
                     ]
                 )
             ],

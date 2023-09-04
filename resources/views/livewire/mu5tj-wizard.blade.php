@@ -132,7 +132,7 @@
                         @foreach($specTable as $spec)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td>{{$spec->spec_id}}</td>
+                                <td>{{$spec->specDetail->code}}</td>
                                 <td>{{$spec->specDetail->attribute['5mm_min']}}</td>
                                 <td>{{$spec->specDetail->attribute['5mm_max']}}</td>
                                 <td>{{$spec->specDetail->attribute['40mm_min']}}</td>

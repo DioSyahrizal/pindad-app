@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'npp',
         'jabatan',
+        'codename',
         'username',
         'password',
     ];

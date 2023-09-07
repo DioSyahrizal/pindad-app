@@ -71,25 +71,31 @@
             </div>
             <div class="mb-3">
                 <label for="kode_mesin_bakar" class="form-label">Kode Mesin Bakar</label>
-                <input type="text" wire:model="kode_mesin_bakar"
-                       class="form-control {{$errors->first('kode_mesin_bakar') ? "is-invalid" : "" }}"
-                       id="kode_mesin_bakar">
+                <select name="kode_mesin_bakar"
+                        class="form-select {{$errors->first('kode_mesin_bakar') ? 'is-invalid': ""}}"
+                        aria-label="Kode Mesin Bakar" wire:model="kode_mesin_bakar">
+                    <option selected>Kode Mesin Bakar...</option>
+                    <option value="I-3" @selected(old('kode_mesin_bakar') == 'I-3')>I-3</option>
+                    <option value="3U" @selected(old('kode_mesin_bakar') == '3U')>3U</option>
+                    <option value="DAL 54-1" @selected(old('kode_mesin_bakar') == 'DAL 54-1')>DAL 54-1</option>
+                    <option value="DAL 54-2" @selected(old('kode_mesin_bakar') == 'DAL 54-2')>DAL 54-2</option>
+                </select>
                 @error('kode_mesin_bakar')
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
-                <div class="mb-3">
-                    <label for="waktu_bakar" class="form-label">Waktu Bakar</label>
-                    <input type="text" wire:model="waktu_bakar"
-                           class="form-control {{$errors->first('waktu_bakar') ? "is-invalid" : "" }}" id="waktu_bakar">
-                    @error('waktu_bakar')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+            <div class="mb-3">
+                <label for="waktu_bakar" class="form-label">Waktu Bakar</label>
+                <input type="text" wire:model="waktu_bakar"
+                       class="form-control {{$errors->first('waktu_bakar') ? "is-invalid" : "" }}" id="waktu_bakar">
+                @error('waktu_bakar')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
+                @enderror
+            </div>
             <div class="mb-3">
                 <label for="temperature" class="form-label">Temperature</label>
                 <input type="text" wire:model="temperature"
@@ -185,9 +191,9 @@
             <div class="mb-3">
                 <label for="keterangan" class="form-label">Keterangan</label>
                 <textarea wire:model="keterangan"
-                       class="form-control {{$errors->first('keterangan') ? "is-invalid" : "" }}"
+                          class="form-control {{$errors->first('keterangan') ? "is-invalid" : "" }}"
                           rows="4"
-                       id="keterangan"></textarea>
+                          id="keterangan"></textarea>
                 @error('keterangan')
                 <div class="invalid-feedback">
                     {{ $message }}

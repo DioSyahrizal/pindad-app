@@ -7,10 +7,12 @@ use App\Models\Mu5tj_Longsong;
 use App\Models\Mu5tjKodelini;
 use App\Models\Mu5tjLongsongHb;
 use App\Models\Mu5tjLongsongSpecActive;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Mu5tjWizard extends Component
 {
+
 
     public $currentStep = 1;
     public $no_lot, $kode_lini, $kode_mesin_bakar, $temperature, $titik_11, $titik_12, $titik_13,
@@ -19,6 +21,11 @@ class Mu5tjWizard extends Component
     public $generateCode = '';
     public $specTable;
     public $isExistOnHistory = false;
+
+    function __construct()
+    {
+        $this->tanggal_create = Carbon::now()->format('Y-m-d\TH:i');
+    }
 
 
     public function render()
@@ -183,7 +190,7 @@ class Mu5tjWizard extends Component
             'titik_23' => $this->titik_23,
             'titik_24' => $this->titik_24,
             'titik_25' => $this->titik_25,
-            'tanggal_create' => $this->tanggal_create ? $this->tanggal_create : now(),
+            'tanggal_create' => $this->tanggal_create,
             'status' => $this->generateStatus(),
             'mato' => $this->generateStatus() === 'PASSED' ? 1 : 0,
             'keterangan' => $this->keterangan,

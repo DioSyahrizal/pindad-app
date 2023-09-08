@@ -230,6 +230,7 @@
 </div>
 
 <script>
+    const tanggalCreate = document.getElementById('tanggal_create').defaultValue({{$tanggal_create}});
     $(document).ready(function () {
         $('#input-number').on('keydown', function (event) {
             // Get the pressed key code

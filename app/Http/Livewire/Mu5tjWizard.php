@@ -97,7 +97,6 @@ class Mu5tjWizard extends Component
             'titik_23' => 'required',
             'titik_24' => 'required',
             'titik_25' => 'required',
-            'keterangan' => '',
 
         ]);
         $this->currentStep = 3;

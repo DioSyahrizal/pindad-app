@@ -37,7 +37,7 @@ return new class extends Migration {
             $table->integer('retry');
             $table->string('status_bakar');
             $table->timestamp('tanggal_create');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

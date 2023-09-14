@@ -93,7 +93,7 @@ class Mu5tjWizard extends Component
 
     public function secondStepSubmit(): void
     {
-        $this->validate([
+         $this->validate([
             'titik_11' => 'required',
             'titik_12' => 'required',
             'titik_13' => 'required',
@@ -106,7 +106,7 @@ class Mu5tjWizard extends Component
             'titik_25' => 'required',
 
         ]);
-        $this->currentStep = 3;
+        $this->submitForm();
     }
 
     public function conditionTitik($titik, $min, $max): string

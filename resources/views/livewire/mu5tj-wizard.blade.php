@@ -6,10 +6,10 @@
     {{--    @endif--}}
     <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-            <a class="nav-link {{ $currentStep != 1 ? '' : 'active' }}" href="#step1">Step 1</a>
+            <span class="nav-link {{ $currentStep != 1 ? '' : 'active' }}">Step 1</span>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ $currentStep != 2 ? '' : 'active' }}" href="#step2">Step 2</a>
+            <span class="nav-link {{ $currentStep != 2 ? '' : 'active' }}">Step 2</span>
         </li>
     </ul>
     <div class="row pt-3">
@@ -42,17 +42,6 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="no_lot" class="form-label">Nomor Lot</label>
-                <input type="text" wire:model="no_lot"
-                       class="form-control {{$errors->first('no_lot') ? "is-invalid" : "" }}" id="no_lot"
-                       aria-describedby="no_lot">
-                @error('no_lot')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div>
-            <div class="mb-3">
                 <label for="kode_lini" class="form-label">Kode Lini</label>
                 <select name="kode_lini" class="form-select {{$errors->first('kode_lini') ? "is-invalid" : "" }}"
                         aria-label="Kode Lini" wire:model="kode_lini">
@@ -69,6 +58,18 @@
                 </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="no_lot" class="form-label">Nomor Lot</label>
+                <input type="text" wire:model="no_lot"
+                       class="form-control {{$errors->first('no_lot') ? "is-invalid" : "" }}" id="no_lot"
+                       aria-describedby="no_lot">
+                @error('no_lot')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
             <div class="mb-3">
                 <label for="kode_mesin_bakar" class="form-label">Kode Mesin Bakar</label>
                 <select name="kode_mesin_bakar"
@@ -117,7 +118,7 @@
         {{-- Step 2 --}}
         <div id="step2" style="display: {{ $currentStep != 2 ? 'none' : '' }}">
             <h4 class="mt-4">Table Specs</h4>
-            <div class="w-[50%] bg-white rounded my-4">
+            <div class=" bg-white rounded my-4">
                 <table class="table">
                     <thead>
                     <tr>
@@ -167,7 +168,7 @@
                     <tr>
                         <th scope="row">{{$i}}</th>
                         <td class="input--custom-group">
-                            <input type="number" wire:model="{{$key}}"
+                            <input type="numeric" wire:model="{{$key}}"
                                    id="input-number"
                                    min="0"
                                    aria-describedby="{{$key}}"
@@ -176,7 +177,7 @@
                             <div class="{{$errors->first($key) ? 'error' : ''}}"/>
                         </td>
                         <td class="input--custom-group">
-                            <input type="number" wire:model="{{$key2}}"
+                            <input type="numeric" wire:model="{{$key2}}"
                                    id="input-number"
                                    min="0"
                                    aria-describedby="{{$key2}}"
@@ -217,30 +218,29 @@
             </button>
         </div>
 
-        {{-- Step 3 --}}
-        <div id="step3" style="display: {{ $currentStep != 3 ? 'none' : '' }}">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Name: {{$no_lot}}</li>
-                <li class="list-group-item">Username: {{ $kode_lini }}</li>
-            </ul>
-            <button class="btn btn-danger" type="button" wire:click="back(2)">Back</button>
-            <button class="btn btn-success" wire:click="submitForm" type="button">Finish</button>
-        </div>
+        {{--        --}}{{-- Step 3 --}}
+        {{--        <div id="step3" style="display: {{ $currentStep != 3 ? 'none' : '' }}">--}}
+        {{--            <ul class="list-group list-group-flush">--}}
+        {{--                <li class="list-group-item">No Lot: {{$no_lot}}</li>--}}
+        {{--                <li class="list-group-item">Kode Lini: {{ $kode_lini }}</li>--}}
+        {{--            </ul>--}}
+        {{--            <button class="btn btn-danger" type="button" wire:click="back(2)">Back</button>--}}
+        {{--            <button class="btn btn-success" wire:click="submitForm" type="button">Finish</button>--}}
+        {{--        </div>--}}
     </div>
 </div>
 
 <script>
-    const tanggalCreate = document.getElementById('tanggal_create').defaultValue({{$tanggal_create}});
     $(document).ready(function () {
-        $('#input-number').on('keydown', function (event) {
-            // Get the pressed key code
-            var keyCode = event.keyCode || event.which;
+        $('#input-number').on('input', function (event) {
+            // Get the input value
+            var inputValue = $(this).val();
 
-            // Check if the pressed key is "e" or "-"
-            if (keyCode === 69 || keyCode === 189) {
-                // Prevent default behavior of the keypress
-                event.preventDefault();
-            }
+            // Remove any non-numeric characters (except ".")
+            var sanitizedValue = inputValue.replace(/[^0-9.]/g, '');
+
+            // Update the input field with the sanitized value
+            $(this).val(sanitizedValue);
         });
     });
 </script>

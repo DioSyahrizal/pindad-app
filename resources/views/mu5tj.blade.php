@@ -24,24 +24,29 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">No.</th>
+                                    <th scope="col">Tanggal</th>
                                     <th scope="col">Lini</th>
                                     <th scope="col">No. Lot</th>
+                                    <th scope="col">Hasil</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Inspektur</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($data as $child)
                                     <tr>
                                         <th scope="row">{{$loop->iteration}}</th>
-                                        <th >{{$child->kodeLini->nama}}</th>
-                                        <td><a href="/5mm/mu5tj/longsong/hb-1/{{$child->id}}/detail">{{$child->no_lot}}</a></td>
+                                        <td>{{$child->tanggal_create->format('d/m/Y')}}</td>
+                                        <td>{{$child->kodeLini->nama}}</td>
                                         <td>
-                                            <x-mu5tj-pill-status :status="$child->mato"/>
+                                            <a href="/5mm/mu5tj/longsong/hb-1/{{$child->id}}/detail">{{$child->no_lot}}</a>
                                         </td>
-                                        <td>{{$child->status}}</td>
-                                        <td>{{$child->tanggal_create}}</td>
+                                        <td>
+                                            <x-mu5tj-pill-status :mato="$child->mato" :status="$child->status"/>
+                                        </td>
+                                        <td>{{$child->status_bakar}}</td>
+                                        <td>{{$child->user->codename}}</td>
+
                                     </tr>
                                 @endforeach
                                 </tbody>

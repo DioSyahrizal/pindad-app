@@ -43,4 +43,9 @@ class Mu5tjLongsongHb extends Model
     {
         return $this->hasOne(Mu5tjKodelini::class, 'id', 'lini_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

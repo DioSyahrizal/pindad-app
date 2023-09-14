@@ -1,6 +1,6 @@
 @php
-    $isApproved = $status  === 1;
-    $isRejected = $status  === 0;
+    $isApproved = $mato  === 1;
+    $isRejected = $mato  === 0;
 @endphp
 
 <span @class([

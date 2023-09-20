@@ -48,4 +48,9 @@ class Mu5tjLongsongHb extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function spec()
+    {
+        return $this->hasOne(Mu5tjLongsongSpec::class, 'id', 'spec_id');
+    }
 }

@@ -1,6 +1,6 @@
 <x-layout>
-    <div class="p-5">
-        <div class="border border-solid border-black bg-white p-4">
+    <div class="sm:p-0 md:p-5  overflow-x-auto max-w-[100vw]">
+        <div class="border border-solid border-black bg-white p-4 w-[600px] sm:w-full">
             <div class="border border-solid border-black  p-4 text-center">
                 PT. PINDAD (PERSERO)<br/>
                 DEP. PROD KOMPONEN MKK
@@ -29,7 +29,7 @@
                     Kode Dal Msn Bakar
                 </div>
                 <div class="border border-solid border-black px-4 py-2">
-                    {{$mu5tj->kode_mesin_bakar}}
+                    {{$mu5tj->mesin_bakar}}
                 </div>
             </div>
             <div class="grid grid-cols-4">
@@ -72,10 +72,10 @@
                     Maximum
                 </div>
                 <div class="border border-solid border-black px-4 py-2">
-                    max-1.1
+                    {{$mu5tj->spec->attribute['5mm_max']}}
                 </div>
                 <div class="border border-solid border-black px-4 py-2">
-                    max-2.1
+                    {{$mu5tj->spec->attribute['40mm_max']}}
                 </div>
             </div>
             <div class="grid grid-cols-3">
@@ -83,31 +83,37 @@
                     Minimum
                 </div>
                 <div class="border border-solid border-black px-4 py-2">
-                    min-1.1
+                    {{$mu5tj->spec->attribute['5mm_min']}}
                 </div>
                 <div class="border border-solid border-black px-4 py-2">
-                    min-2.1
+                    {{$mu5tj->spec->attribute['40mm_min']}}
                 </div>
             </div>
             <div class="border border-solid border-black px-4 py-2 grid--dari">
                 <div>Kesimpulan</div>
                 <div>:</div>
-                <div class="mb-4">{{$mu5tj->mato}}</div>
+                <div class="mb-4">
+                    <x-mu5tj-pill-status :mato="$mu5tj->mato" :status="$mu5tj->status"/>
+                </div>
             </div>
             <div class="grid grid-cols-2">
                 <div class="border border-solid border-black px-4 py-2">
                     <div class="mb-2">Keterangan:</div>
-                    <div class="mb-10">{{$mu5tj->status}}</div>
+                    <div class="mb-10">{{$mu5tj->keterangan}}</div>
                 </div>
                 <div class="border border-solid border-black ">
                     <div class="border border-solid border-black text-center">DIPERIKSA OLEH</div>
                     <div class="grid grid-cols-2">
                         <div class="border border-solid border-black px-4 py-2">Jabatan</div>
-                        <div class="border border-solid border-black px-4 py-2">{{auth()->user()->jabatan}}</div>
+                        <div class="border border-solid border-black px-4 py-2">{{$mu5tj->user->jabatan}}</div>
                         <div class="border border-solid border-black px-4 py-2">Nama</div>
-                        <div class="border border-solid border-black px-4 py-2">{{auth()->user()->name}}</div>
+                        <div class="border border-solid border-black px-4 py-2">{{$mu5tj->user->name}}</div>
                         <div class="border border-solid border-black px-4 py-2">Tanda Tangan</div>
-                        <div class="border border-solid border-black px-4 pt-2 pb-10">[Jabatan]</div>
+                        <div
+                            class="border border-solid border-black px-4 py-2">
+                            {{$mu5tj->tanggal_create->format('d/m/Y')}}
+                            <br/><br/>
+                            {{$mu5tj->user->codename}}</div>
                     </div>
                 </div>
             </div>

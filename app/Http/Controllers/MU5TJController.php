@@ -20,6 +20,6 @@ class MU5TJController extends Controller
 
     public function viewSinglePost(Mu5tjLongsongHb $mu5tj)
     {
-        return view('mu5tj_dimensi_form', compact('mu5tj'));
+        return view('mu5tj_hb_detail', compact('mu5tj'));
     }
 }

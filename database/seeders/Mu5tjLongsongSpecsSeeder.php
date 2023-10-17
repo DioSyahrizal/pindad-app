@@ -16,10 +16,10 @@ class Mu5tjLongsongSpecsSeeder extends Seeder
                 'flow_id' => 1,
                 'attribute' => json_encode(
                     [
-                        '5mm_min' => 4.5,
-                        '5mm_max' => 7.5,
-                        '40mm_min' => 39.5,
-                        '40mm_max' => 40.5,
+                        '5mm_min' => 120,
+                        '5mm_max' => 160,
+                        '40mm_min' => 95,
+                        '40mm_max' => 145,
                     ]
                 )
             ],
@@ -29,10 +29,10 @@ class Mu5tjLongsongSpecsSeeder extends Seeder
                 'flow_id' => 1,
                 'attribute' => json_encode(
                     [
-                        '5mm_min' => 4.5,
-                        '5mm_max' => 7.5,
-                        '40mm_min' => 39.5,
-                        '40mm_max' => 40.5,
+                        '5mm_min' => 120,
+                        '5mm_max' => 170,
+                        '40mm_min' => 80,
+                        '40mm_max' => 130,
                     ]
                 )
             ],
@@ -42,10 +42,10 @@ class Mu5tjLongsongSpecsSeeder extends Seeder
                 'flow_id' => 1,
                 'attribute' => json_encode(
                     [
-                        '5mm_min' => 4.5,
-                        '5mm_max' => 7.5,
-                        '40mm_min' => 39.5,
-                        '40mm_max' => 40.5,
+                        '5mm_min' => 120,
+                        '5mm_max' => 170,
+                        '40mm_min' => 80,
+                        '40mm_max' => 130,
                     ]
                 )
             ],
@@ -55,10 +55,10 @@ class Mu5tjLongsongSpecsSeeder extends Seeder
                 'flow_id' => 1,
                 'attribute' => json_encode(
                     [
-                        '5mm_min' => 4.5,
-                        '5mm_max' => 7.5,
-                        '40mm_min' => 39.5,
-                        '40mm_max' => 40.5,
+                        '5mm_min' => 115,
+                        '5mm_max' => 160,
+                        '40mm_min' => 70,
+                        '40mm_max' => 130,
                     ]
                 )
             ],
@@ -68,10 +68,10 @@ class Mu5tjLongsongSpecsSeeder extends Seeder
                 'flow_id' => 1,
                 'attribute' => json_encode(
                     [
-                        '5mm_min' => 4.5,
-                        '5mm_max' => 7.5,
-                        '40mm_min' => 39.5,
-                        '40mm_max' => 40.5,
+                        '5mm_min' => 120,
+                        '5mm_max' => 160,
+                        '40mm_min' => 70,
+                        '40mm_max' => 100,
                     ]
                 )
             ],

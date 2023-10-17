@@ -13,6 +13,12 @@ class MU5TJController extends Controller
         return view('mu5tj', compact('data'));
     }
 
+    public function getTableAll()
+    {
+        $data = Mu5tjLongsongHb::query()->with(['kodeLini', 'user'])->get();
+        return response()->json($data);
+    }
+
     public function create()
     {
         return view('mu5tj_create');

@@ -21,10 +21,13 @@ class Mu5tjWizard extends Component
     public $generateCode = '';
     public $specTable;
     public $isExistOnHistory = false;
+    public $retryCount = 0;
+    public $status_bakar = '';
 
     function __construct()
     {
         $this->tanggal_create = Carbon::now()->format('Y-m-d\TH:i');
+        $this->tahun = Carbon::now()->format('Y');
     }
 
 
@@ -38,6 +41,8 @@ class Mu5tjWizard extends Component
             'generateCode' => $this->generateCode,
             'status_code' => $this->statusCode,
             'specTable' => $this->specTable,
+            'retryCount' => $this->retryCount,
+            'status_bakar' => $this->status_bakar,
         ]);
     }
 
@@ -50,16 +55,20 @@ class Mu5tjWizard extends Component
         }
 
         if ($this->generateCode !== 'not valid') {
+            $retryQuery = Mu5tjLongsongHb::where([['kode', '=', $this->generateCode]])->orderBy('created_at', 'desc')->first();
             $checkCodeExist = Mu5tj_Longsong::where([['kode', '=', $this->generateCode]])->get();
             if ($checkCodeExist->count() > 0) {
                 if ($checkCodeExist->first()->flow_id !== 1) {
                     $this->statusCode = 'failed';
+                    $this->retryCount = 0;
                 } else {
                     $this->isExistOnHistory = true;
+                    $this->retryCount = $retryQuery && $retryQuery->retry !== null ? $retryQuery->retry + 1 : 0;
                     $this->statusCode = 'success';
                 }
             } else {
                 $this->statusCode = "success";
+                $this->retryCount = 0;
             }
         }
     }
@@ -85,7 +94,6 @@ class Mu5tjWizard extends Component
             'no_lot' => 'required|min:2',
             'kode_lini' => 'required',
             'kode_mesin_bakar' => 'required',
-            'temperature' => 'required',
         ]);
 
         $this->currentStep = 2;
@@ -93,7 +101,7 @@ class Mu5tjWizard extends Component
 
     public function secondStepSubmit(): void
     {
-         $this->validate([
+        $this->validate([
             'titik_11' => 'required',
             'titik_12' => 'required',
             'titik_13' => 'required',
@@ -155,6 +163,14 @@ class Mu5tjWizard extends Component
         }
     }
 
+    public function generateStatusBakar()
+    {
+            if ($this->retryCount > 0 && $this->status_bakar) {
+                return $this->status_bakar;
+            }
+            return '-';
+    }
+
     public function submitForm(): void
     {
         $created = null;
@@ -195,7 +211,7 @@ class Mu5tjWizard extends Component
             'mato' => $this->generateStatus() === 'PASSED' ? 1 : 0,
             'keterangan' => $this->keterangan,
             'retry' => $created ? 0 : $lastData->retry + 1,
-            'status_bakar' => $this->generateStatus() === 'PASSED' ? 'Optimasi' : 'Bakar Ulang',
+            'status_bakar' => $this->generateStatusBakar(),
         ]);
 
         // update flow_id to 2 when status is passed

@@ -15,6 +15,7 @@
     <div class="row pt-3">
         {{-- Step 1 --}}
         <div id="step1" class="needs-validation" style="display: {{ $currentStep != 1 ? 'none' : '' }}">
+
             @if($status_code === 'success')
                 <div class="alert alert-success" role="alert">
                     Nomor Lot belum approved!
@@ -29,7 +30,7 @@
                 <select name="tahun" class="form-select {{$errors->first('tahun') ? "is-invalid" : "" }}"
                         aria-label="Tahun" wire:model="tahun">
                     <option selected>Tahun...</option>
-                    @for($i = now()->year; $i >= 1990; $i--)
+                    @for($i = now()->year; $i >= 2019; $i--)
                         <option value="{{ $i }}" @selected(old('tahun') == $i)>
                             {{ $i }}
                         </option>
@@ -80,6 +81,7 @@
                     <option value="3U" @selected(old('kode_mesin_bakar') == '3U')>3U</option>
                     <option value="DAL 54-1" @selected(old('kode_mesin_bakar') == 'DAL 54-1')>DAL 54-1</option>
                     <option value="DAL 54-2" @selected(old('kode_mesin_bakar') == 'DAL 54-2')>DAL 54-2</option>
+                    <option value="Lainnya" @selected(old('kode_mesin_bakar') == 'Lainnya')>Lainnya</option>
                 </select>
                 @error('kode_mesin_bakar')
                 <div class="invalid-feedback">
@@ -87,6 +89,26 @@
                 </div>
                 @enderror
             </div>
+
+            @if($retryCount && $retryCount >= 0)
+            <div class="mb-3">
+                <label for="status_bakar" class="form-label">Status Bakar</label>
+                <select name="status_bakar"
+                        class="form-select {{$errors->first('status_bakar') ? 'is-invalid': ""}}"
+                        aria-label="Status Bakar" wire:model="status_bakar">
+                    <option selected>Status Bakar...</option>
+                    <option value="Optimasi" @selected(old('status_bakar') == 'Optimasi')>Optimasi</option>
+                    <option value="Bakar Ulang" @selected(old('status_bakar') == 'Bakar Ulang')>Bakar Ulang</option>
+                    <option value="Lain - Lain" @selected(old('status_bakar') == 'Lain - Lain')>Lain - Lain</option>
+                </select>
+                @error('status_bakar')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            @endif
+
             <div class="mb-3">
                 <label for="waktu_bakar" class="form-label">Waktu Bakar</label>
                 <input type="text" wire:model="waktu_bakar"
@@ -168,7 +190,7 @@
                     <tr>
                         <th scope="row">{{$i}}</th>
                         <td class="input--custom-group">
-                            <input type="numeric" wire:model="{{$key}}"
+                            <input class="numeric" type="numeric" wire:model="{{$key}}"
                                    id="input-number"
                                    min="0"
                                    aria-describedby="{{$key}}"
@@ -177,7 +199,7 @@
                             <div class="{{$errors->first($key) ? 'error' : ''}}"/>
                         </td>
                         <td class="input--custom-group">
-                            <input type="numeric" wire:model="{{$key2}}"
+                            <input class="numeric" type="numeric" wire:model="{{$key2}}"
                                    id="input-number"
                                    min="0"
                                    aria-describedby="{{$key2}}"
@@ -232,15 +254,12 @@
 
 <script>
     $(document).ready(function () {
-        $('#input-number').on('input', function (event) {
-            // Get the input value
-            var inputValue = $(this).val();
-
-            // Remove any non-numeric characters (except ".")
-            var sanitizedValue = inputValue.replace(/[^0-9.]/g, '');
-
-            // Update the input field with the sanitized value
-            $(this).val(sanitizedValue);
+        $('.numeric').each(function () {
+            $(this).on('input', function () {
+                var sanitized = $(this).val().replace(/[^0-9.]/g, '');
+                sanitized = sanitized.replace(/(.)\./, '$1');
+                $(this).val(sanitized);
+            });
         });
     });
 </script>

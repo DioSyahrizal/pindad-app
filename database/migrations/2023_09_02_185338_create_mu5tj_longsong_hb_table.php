@@ -20,8 +20,8 @@ return new class extends Migration {
             $table->string('no_lot');
             $table->string('kode');
             $table->string('mesin_bakar');
-            $table->string('waktu_bakar');
-            $table->string('temperature');
+            $table->string('waktu_bakar')->nullable();
+            $table->string('temperature')->nullable();
             $table->float('titik_11');
             $table->float('titik_12');
             $table->float('titik_13');

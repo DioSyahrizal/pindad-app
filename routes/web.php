@@ -27,6 +27,8 @@ Route::prefix('5mm')->group(function () {
             Route::get('/hb-1/table', [MU5TJController::class, 'getTableAll'])->middleware('mustBeLoggedIn');
             Route::get('/hb-1/create', [MU5TJController::class, 'create'])->middleware('mustBeLoggedIn');
             Route::get('/hb-1/{mu5tj}/detail', [MU5TJController::class, 'viewSinglePost'])->where('mu5tj', '[0-9]+')->middleware('mustBeLoggedIn');
+
+            Route::get('/dimensi', [\App\Http\Controllers\MU5TJDimensiController::class, 'getAll'])->middleware('mustBeLoggedIn');
         });
     });
 

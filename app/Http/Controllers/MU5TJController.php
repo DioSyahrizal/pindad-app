@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mu5TJ;
 use App\Models\Mu5tjLongsongHb;
+use Yajra\DataTables\DataTables;
 
 class MU5TJController extends Controller
 {
@@ -15,8 +16,8 @@ class MU5TJController extends Controller
 
     public function getTableAll()
     {
-        $data = Mu5tjLongsongHb::query()->with(['kodeLini', 'user'])->get();
-        return response()->json($data);
+        $data = DataTables::of(Mu5tjLongsongHb::query()->with(['kodeLini', 'user']))->make(true);
+        return $data;
     }
 
     public function create()

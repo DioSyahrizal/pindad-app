@@ -9,8 +9,7 @@ class MU5TJController extends Controller
 {
     public function getAll()
     {
-        $data = Mu5tjLongsongHb::query()->with('kodeLini')->paginate(10);
-        return view('mu5tj', compact('data'));
+        return view('mu5tj');
     }
 
     public function getTableAll()

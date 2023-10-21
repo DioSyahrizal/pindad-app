@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Mu5TJ;
 use App\Models\Mu5tjLongsongHb;
+use Yajra\DataTables\DataTables;
 
 class MU5TJController extends Controller
 {
     public function getAll()
     {
-        return view('mu5tj');
+        $data = Mu5tjLongsongHb::query()->with('kodeLini')->paginate(10);
+        return view('mu5tj', compact('data'));
     }
 
     public function getTableAll()
     {
-        $data = Mu5tjLongsongHb::query()->with(['kodeLini', 'user'])->get();
-        return response()->json($data);
+        $data = DataTables::of(Mu5tjLongsongHb::query()->with(['kodeLini', 'user']))->make(true);
+        return $data;
     }
 
     public function create()

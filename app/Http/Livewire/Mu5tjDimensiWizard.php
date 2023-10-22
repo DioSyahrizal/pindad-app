@@ -12,9 +12,9 @@ use Livewire\Component;
 
 class Mu5tjDimensiWizard extends Component
 {
-    public $currentStep = 2;
+    public $currentStep = 1;
     public $tahun, $kode_lini, $no_lot, $kode, $tanggal_create, $statusCode, $retryCount, $generateCode;
-    public $n = 2;
+    public $n = 1;
     public $sample = 0;
     public $p_min_n1 = 0;
     public $p_min_n2 = 0;

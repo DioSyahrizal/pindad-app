@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 
-
 use App\Models\Mu5tjLongsongDimensi;
 
 class MU5TJDimensiController extends Controller
@@ -12,5 +11,10 @@ class MU5TJDimensiController extends Controller
     {
         $data = Mu5tjLongsongDimensi::query()->with('kodeLini')->paginate(10);
         return view('mu5tj-dimensi', compact('data'));
+    }
+
+    public function create()
+    {
+        return view('mu5tj-dimensi-create');
     }
 }

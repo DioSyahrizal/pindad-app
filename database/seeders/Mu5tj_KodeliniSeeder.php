@@ -20,7 +20,7 @@ class Mu5tj_KodeliniSeeder extends Seeder
                 'nama' => 'LAMA'
             ],
             [
-                'nama' => 'NLL'
+                'nama' => 'NLC'
             ],
             [
                 'nama' => 'INT'

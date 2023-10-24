@@ -12,28 +12,145 @@ use Livewire\Component;
 
 class Mu5tjDimensiWizard extends Component
 {
-    public $currentStep = 1;
+    public $currentStep = 3;
     public $tahun, $kode_lini, $no_lot, $kode, $tanggal_create, $statusCode, $retryCount, $generateCode;
-    public $n = 1;
+    public $n = 2;
     public $sample = 0;
-    public $p_min_n1 = 0;
-    public $p_min_n2 = 0;
-    public $p_max_n1 = 0;
-    public $p_max_n2 = 0;
-    public $p_status = '';
-    public $p_result = '';
-    public $dd_min_n1 = 0;
-    public $dd_min_n2 = 0;
-    public $dd_max_n1 = 0;
-    public $dd_max_n2 = 0;
-    public $dd_status = '';
-    public $dd_result = '';
     public $jumlah = 20000;
+
+// Variables for 'p'
+    public $p_min_n1 = 0, $p_min_n2 = 0;
+    public $p_max_n1 = 0, $p_max_n2 = 0;
+    public $p_status = '', $p_result = '';
+
+// Variables for 'dd'
+    public $dd_min_n1 = 0, $dd_min_n2 = 0;
+    public $dd_max_n1 = 0, $dd_max_n2 = 0;
+    public $dd_status = '', $dd_result = '';
+
+// Variables for 'dla'
+    public $dla_0lb = 0, $dla_1lb = 0, $dla_3lb = 0, $dla_4lb = 0;
+    public $dla_status = '', $dla_result = '';
+
+// Variables for 'dmd'
+    public $dmd_min_n1 = 0, $dmd_min_n2 = 0;
+    public $dmd_max_n1 = 0, $dmd_max_n2 = 0;
+    public $dmd_status = '', $dmd_result = '';
+
+// Variables for 'mb'
+    public $mb_min_n1 = 0, $mb_min_n2 = 0;
+    public $mb_max_n1 = 0, $mb_max_n2 = 0;
+    public $mb_status = '', $mb_result = '';
+
+// Variables for 'dlp'
+    public $dlp_min_n1 = 0, $dlp_min_n2 = 0;
+    public $dlp_max_n1 = 0, $dlp_max_n2 = 0;
+    public $dlp_status = '', $dlp_result = '';
+
+    // Variable for 'dml;
+    public $dml_min_n1 = 0, $dml_min_n2 = 0;
+    public $dml_max_n1 = 0, $dml_max_n2 = 0;
+    public $dml_status = '', $dml_result = '';
 
 
     public function back($step): void
     {
         $this->currentStep = $step;
+    }
+
+    public function resetPanjang(): void
+    {
+        $this->p_min_n1 = 0;
+        $this->p_min_n2 = 0;
+        $this->p_max_n1 = 0;
+        $this->p_max_n2 = 0;
+        $this->p_status = '';
+        $this->p_result = '';
+    }
+
+    public function resetDiameterDasar(): void
+    {
+        $this->dd_min_n1 = 0;
+        $this->dd_min_n2 = 0;
+        $this->dd_max_n1 = 0;
+        $this->dd_max_n2 = 0;
+        $this->dd_status = '';
+        $this->dd_result = '';
+    }
+
+    public function resetDiameterLubangapi(): void
+    {
+        $this->dla_0lb = 0;
+        $this->dla_1lb = 0;
+        $this->dla_3lb = 0;
+        $this->dla_4lb = 0;
+        $this->dla_status = '';
+        $this->dla_result = '';
+    }
+
+    public function resetDiameterDalam(): void
+    {
+        $this->dmd_min_n1 = 0;
+        $this->dmd_min_n2 = 0;
+        $this->dmd_max_n1 = 0;
+        $this->dmd_max_n2 = 0;
+        $this->dmd_status = '';
+        $this->dmd_result = '';
+    }
+
+    public function resetMalBentuk(): void
+    {
+        $this->mb_min_n1 = 0;
+        $this->mb_min_n2 = 0;
+        $this->mb_max_n1 = 0;
+        $this->mb_max_n2 = 0;
+        $this->mb_status = '';
+        $this->mb_result = '';
+    }
+
+    public function resetDiameterLPenggalak(): void
+    {
+        $this->dlp_min_n1 = 0;
+        $this->dlp_min_n2 = 0;
+        $this->dlp_max_n1 = 0;
+        $this->dlp_max_n2 = 0;
+        $this->dlp_status = '';
+        $this->dlp_result = '';
+    }
+
+    public function resetDiameterMulutLuar(): void
+    {
+        $this->dml_min_n1 = 0;
+        $this->dml_min_n2 = 0;
+        $this->dml_max_n1 = 0;
+        $this->dml_max_n2 = 0;
+        $this->dml_status = '';
+        $this->dml_result = '';
+    }
+
+    public function generateLubangApi(): void
+    {
+        $countAll = $this->dla_0lb + $this->dla_1lb + $this->dla_3lb + $this->dla_4lb;
+        if ($countAll > 0) {
+            $this->dla_result = 'TB';
+        } else {
+            $this->dla_result = 'B';
+        }
+
+        if ($this->dla_0lb > 0 && $this->dla_1lb == 0 && $this->dla_3lb == 0 && $this->dla_4lb == 0) {
+            $this->dla_status = '0-LB';
+        } elseif ($this->dla_0lb == 0 && $this->dla_1lb > 0 && $this->dla_3lb == 0 && $this->dla_4lb == 0) {
+            $this->dla_status = '1-LB';
+        } elseif ($this->dla_0lb == 0 && $this->dla_1lb == 0 && $this->dla_3lb > 0 && $this->dla_4lb == 0) {
+            $this->dla_status = '3-LB';
+        } elseif ($this->dla_0lb == 0 && $this->dla_1lb == 0 && $this->dla_3lb == 0 && $this->dla_4lb > 0) {
+            $this->dla_status = '4-LB';
+        } elseif ($this->dla_0lb > 0 || $this->dla_1lb > 0 || $this->dla_3lb > 0 || $this->dla_4lb > 0) {
+            $this->dla_status = 'CAMPUR';
+        } else {
+            $this->dla_status = 'OK';
+        }
+
     }
 
     public function generateStatus($min_n1, $min_n2, $max_n1, $max_n2): array
@@ -48,12 +165,45 @@ class Mu5tjDimensiWizard extends Component
             $status = 'MIN';
         } elseif ($total_min < 1 && $total_max >= 1) {
             $status = 'MAX';
+        } else {
+            $status = 'OK';
         }
 
-        if ($min_n1 + $min_n2 + $max_n1 + $max_n2 <= 1) {
+        if ($total_min + $total_max <= 1) {
             $result = 'B';
         } else {
             $result = 'TB';
+        }
+        return array('status' => $status, 'result' => $result);
+    }
+
+    public function generateStatusWithSpec($min_n1, $min_n2, $max_n1, $max_n2, $min, $max)
+    {
+        $result_code = $this->generateStatus($min_n1, $min_n2, $max_n1, $max_n2);
+        $result = $result_code['result'];
+        $status = $result_code['status'];
+
+        if ($status === 'OK') {
+            if ($min === true && $max === true) {
+                $result = 'TB';
+                $status = 'MINMAX';
+            } elseif ($min === true && $max === false) {
+                $status = 'MIN';
+            } elseif ($min === false && $max === true) {
+                $status = 'MAX';
+            } else {
+                $result = 'B';
+            }
+        } else if ($status === 'MIN') {
+            if ($max === true) {
+                $result = 'TB';
+                $status = 'MINMAX';
+            }
+        } else if ($status === 'MAX') {
+            if ($min === true) {
+                $result = 'TB';
+                $status = 'MINMAX';
+            }
         }
         return array('status' => $status, 'result' => $result);
     }
@@ -82,17 +232,55 @@ class Mu5tjDimensiWizard extends Component
             'dd_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
             'dd_max_n1' => 'required|numeric|min:0',
             'dd_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dla_0lb' => 'required|numeric|min:0',
+            'dla_1lb' => 'required|numeric|min:0',
+            'dla_3lb' => 'required|numeric|min:0',
+            'dla_4lb' => 'required|numeric|min:0',
         ]);
 
-        $this->p_min_n2 = $this->p_min_n2 ?: 0;
-        $this->p_max_n2 = $this->p_max_n2 ?: 0;
-        $this->dd_min_n2 = $this->dd_min_n2 ?: 0;
-        $this->dd_max_n2 = $this->dd_max_n2 ?: 0;
-
-        $result = $this->generateStatus($this->p_min_n1, $this->p_min_n2, $this->p_max_n1, $this->p_max_n2);
-        $this->p_status = $result['status'];
-        $this->p_result = $result['result'];
+        $resultPanjang = $this->generateStatus($this->p_min_n1, $this->p_min_n2, $this->p_max_n1, $this->p_max_n2);
+        $this->p_status = $resultPanjang['status'];
+        $this->p_result = $resultPanjang['result'];
+        $resultDiameter = $this->generateStatus($this->dd_min_n1, $this->dd_min_n2, $this->dd_max_n1, $this->dd_max_n2);
+        $this->dd_status = $resultDiameter['status'];
+        $this->dd_result = $resultDiameter['result'];
+        $this->generateLubangApi();
         $this->currentStep = 3;
+    }
+
+    public function thirdStepSubmit(): void
+    {
+        $this->validate([
+            'dmd_min_n1' => 'required|numeric|min:0',
+            'dmd_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dmd_max_n1' => 'required|numeric|min:0',
+            'dmd_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'mb_min_n1' => 'required|numeric|min:0',
+            'mb_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'mb_max_n1' => 'required|numeric|min:0',
+            'mb_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dlp_min_n1' => 'required|numeric|min:0',
+            'dlp_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dlp_max_n1' => 'required|numeric|min:0',
+            'dlp_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dml_min_n1' => 'required|numeric|min:0',
+            'dml_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dml_max_n1' => 'required|numeric|min:0',
+            'dml_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+        ]);
+
+        $resultDiameterDalam = $this->generateStatus($this->dmd_min_n1, $this->dmd_min_n2, $this->dmd_max_n1, $this->dmd_max_n2);
+        $this->dmd_status = $resultDiameterDalam['status'];
+        $this->dmd_result = $resultDiameterDalam['result'];
+        $resultMalBentuk = $this->generateStatus($this->mb_min_n1, $this->mb_min_n2, $this->mb_max_n1, $this->mb_max_n2);
+        $this->mb_status = $resultMalBentuk['status'];
+        $this->mb_result = $resultMalBentuk['result'];
+        $resultDiameterLPenggalak = $this->generateStatus($this->dlp_min_n1, $this->dlp_min_n2, $this->dlp_max_n1, $this->dlp_max_n2);
+        $this->dlp_status = $resultDiameterLPenggalak['status'];
+        $this->dlp_result = $resultDiameterLPenggalak['result'];
+        $resultDiameterLuar = $this->generateStatus($this->dml_min_n1, $this->dml_min_n2, $this->dml_max_n1, $this->dml_max_n2);
+        $this->dml_status = $resultDiameterLuar['status'];
+        $this->dml_result = $resultDiameterLuar['result'];
     }
 
     function __construct()

@@ -91,22 +91,22 @@
             </div>
 
             @if($retryCount && $retryCount >= 0)
-            <div class="mb-3">
-                <label for="status_bakar" class="form-label">Status Bakar</label>
-                <select name="status_bakar"
-                        class="form-select {{$errors->first('status_bakar') ? 'is-invalid': ""}}"
-                        aria-label="Status Bakar" wire:model="status_bakar">
-                    <option selected>Status Bakar...</option>
-                    <option value="Optimasi" @selected(old('status_bakar') == 'Optimasi')>Optimasi</option>
-                    <option value="Bakar Ulang" @selected(old('status_bakar') == 'Bakar Ulang')>Bakar Ulang</option>
-                    <option value="Lain - Lain" @selected(old('status_bakar') == 'Lain - Lain')>Lain - Lain</option>
-                </select>
-                @error('status_bakar')
-                <div class="invalid-feedback">
-                    {{ $message }}
+                <div class="mb-3">
+                    <label for="status_bakar" class="form-label">Status Bakar</label>
+                    <select name="status_bakar"
+                            class="form-select {{$errors->first('status_bakar') ? 'is-invalid': ""}}"
+                            aria-label="Status Bakar" wire:model="status_bakar">
+                        <option selected>Status Bakar...</option>
+                        <option value="Optimasi" @selected(old('status_bakar') == 'Optimasi')>Optimasi</option>
+                        <option value="Bakar Ulang" @selected(old('status_bakar') == 'Bakar Ulang')>Bakar Ulang</option>
+                        <option value="Lain - Lain" @selected(old('status_bakar') == 'Lain - Lain')>Lain - Lain</option>
+                    </select>
+                    @error('status_bakar')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
-                @enderror
-            </div>
             @endif
 
             <div class="mb-3">
@@ -145,7 +145,7 @@
                     <thead>
                     <tr>
                         <th rowspan="2">#</th>
-                        <th rowspan="4">Kode Spec</th>
+                        <th rowspan="4">Lini</th>
                         <th colspan="2" class="text-center">5 mm (1)</th>
                         <th colspan="2" class="text-center">40 mm (2)</th>
                     </tr>
@@ -161,7 +161,7 @@
                         @foreach($specTable as $spec)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td>{{$spec->specDetail->code}}</td>
+                                <td>{{$spec->lini->nama}}</td>
                                 <td>{{$spec->specDetail->attribute['5mm_min']}}</td>
                                 <td>{{$spec->specDetail->attribute['5mm_max']}}</td>
                                 <td>{{$spec->specDetail->attribute['40mm_min']}}</td>

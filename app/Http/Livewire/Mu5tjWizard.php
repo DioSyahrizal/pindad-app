@@ -76,7 +76,7 @@ class Mu5tjWizard extends Component
     public function step2Generate(): void
     {
         if ($this->currentStep === 2) {
-            $this->specTable = Mu5tjLongsongSpecActive::query()->with('specDetail')->where([['lini_id', '=', $this->kode_lini], ['flow_id', '=', 1]])->get();
+            $this->specTable = Mu5tjLongsongSpecActive::query()->with(['specDetail', 'lini'])->where([['lini_id', '=', $this->kode_lini], ['flow_id', '=', 1]])->get();
         }
 
     }
@@ -165,10 +165,10 @@ class Mu5tjWizard extends Component
 
     public function generateStatusBakar()
     {
-            if ($this->retryCount > 0 && $this->status_bakar) {
-                return $this->status_bakar;
-            }
-            return '-';
+        if ($this->retryCount > 0 && $this->status_bakar) {
+            return $this->status_bakar;
+        }
+        return '-';
     }
 
     public function submitForm(): void

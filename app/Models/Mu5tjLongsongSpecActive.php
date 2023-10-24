@@ -17,4 +17,9 @@ class Mu5tjLongsongSpecActive extends Model
     {
         return $this->hasOne(Mu5tjLongsongSpec::class, 'id', 'spec_id');
     }
+
+    public function lini()
+    {
+        return $this->hasOne(Mu5tjKodelini::class, 'id', 'lini_id');
+    }
 }

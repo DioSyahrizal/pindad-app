@@ -35,6 +35,11 @@ class Mu5tjLongsongSpecActivesSeeder extends Seeder
                 "lini_id" => 5,
                 "flow_id" => 1,
             ],
+            [
+                'spec_id' => 6,
+                'lini_id' => 1,
+                'flow_id' => 2,
+            ]
 
         ]);
     }

@@ -7,16 +7,19 @@ use App\Models\Mu5tj_Longsong;
 use App\Models\Mu5tjKodelini;
 use App\Models\Mu5tjLongsongDimensi;
 use App\Models\Mu5tjLongsongHb;
+use App\Models\Mu5tjLongsongSpecActive;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class Mu5tjDimensiWizard extends Component
 {
-    public $currentStep = 3;
-    public $tahun, $kode_lini, $no_lot, $kode, $tanggal_create, $statusCode, $retryCount, $generateCode;
+    public $currentStep = 4;
+    public $tahun, $kode_lini = 1, $no_lot, $kode, $tanggal_create, $statusCode, $retryCount, $generateCode;
     public $n = 2;
     public $sample = 0;
     public $jumlah = 20000;
+
+    public $specTable;
 
 // Variables for 'p'
     public $p_min_n1 = 0, $p_min_n2 = 0;
@@ -51,6 +54,12 @@ class Mu5tjDimensiWizard extends Component
     public $dml_min_n1 = 0, $dml_min_n2 = 0;
     public $dml_max_n1 = 0, $dml_max_n2 = 0;
     public $dml_status = '', $dml_result = '';
+
+    // Variable for 'hs';
+    public $hs_min_n1 = 0, $hs_min_n2 = 0;
+    public $hs_max_n1 = 0, $hs_max_n2 = 0;
+    public $hs_min = 0, $hs_max = 0;
+    public $hs_status = '', $hs_result = '';
 
 
     public function back($step): void
@@ -128,6 +137,18 @@ class Mu5tjDimensiWizard extends Component
         $this->dml_result = '';
     }
 
+    public function resetHeadspace(): void
+    {
+        $this->hs_min_n1 = 0;
+        $this->hs_min_n2 = 0;
+        $this->hs_max_n1 = 0;
+        $this->hs_max_n2 = 0;
+        $this->hs_min = 0;
+        $this->hs_max = 0;
+        $this->hs_status = '';
+        $this->hs_result = '';
+    }
+
     public function generateLubangApi(): void
     {
         $countAll = $this->dla_0lb + $this->dla_1lb + $this->dla_3lb + $this->dla_4lb;
@@ -177,35 +198,46 @@ class Mu5tjDimensiWizard extends Component
         return array('status' => $status, 'result' => $result);
     }
 
-    public function generateStatusWithSpec($min_n1, $min_n2, $max_n1, $max_n2, $min, $max)
+    public function generateStatusWithSpec($min_n1, $min_n2, $max_n1, $max_n2, $min, $max): array
     {
         $result_code = $this->generateStatus($min_n1, $min_n2, $max_n1, $max_n2);
         $result = $result_code['result'];
         $status = $result_code['status'];
+        $newResult = '';
+        $newStatus = '';
 
-        if ($status === 'OK') {
-            if ($min === true && $max === true) {
-                $result = 'TB';
-                $status = 'MINMAX';
-            } elseif ($min === true && $max === false) {
-                $status = 'MIN';
-            } elseif ($min === false && $max === true) {
-                $status = 'MAX';
+        if ($status == 'OK') {
+            if ($min && $max) {
+                $newResult = 'TB';
+                $newStatus = 'MINMAX';
+            } elseif ($min && !$max) {
+                $newResult = $result;
+                $newStatus = 'MIN';
+            } elseif (!$min && $max) {
+                $newResult = $result;
+                $newStatus = 'MAX';
             } else {
-                $result = 'B';
+                $newResult = 'B';
+                $newStatus = 'OK';
             }
-        } else if ($status === 'MIN') {
-            if ($max === true) {
-                $result = 'TB';
-                $status = 'MINMAX';
+        } else if ($status == 'MIN') {
+            if ($max) {
+                $newResult = 'TB';
+                $newStatus = 'MINMAX';
+            } else {
+                $newResult = $status;
+                $newStatus = $result;
             }
-        } else if ($status === 'MAX') {
-            if ($min === true) {
-                $result = 'TB';
-                $status = 'MINMAX';
+        } else if ($status == 'MAX') {
+            if ($min) {
+                $newResult = 'TB';
+                $newStatus = 'MINMAX';
+            } else {
+                $newResult = $result;
+                $newStatus = $status;
             }
         }
-        return array('status' => $status, 'result' => $result);
+        return array('status' => $newStatus, 'result' => $newResult);
     }
 
     public function firstStepSubmit(): void
@@ -281,6 +313,26 @@ class Mu5tjDimensiWizard extends Component
         $resultDiameterLuar = $this->generateStatus($this->dml_min_n1, $this->dml_min_n2, $this->dml_max_n1, $this->dml_max_n2);
         $this->dml_status = $resultDiameterLuar['status'];
         $this->dml_result = $resultDiameterLuar['result'];
+        $this->currentStep = 4;
+    }
+
+    public function fourthStepSubmit(): void
+    {
+        $this->validate([
+            'hs_min_n1' => 'required|numeric|min:0',
+            'hs_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'hs_max_n1' => 'required|numeric|min:0',
+            'hs_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'hs_min' => 'required|numeric|min:0',
+            'hs_max' => 'required|numeric|min:0',
+        ]);
+        $minHS = $this->hs_min < $this->specTable->first()->specDetail->attribute['hs_min'];
+        $maxHS = $this->hs_max > $this->specTable->first()->specDetail->attribute['hs_max'];
+
+        $resultHeadspace = $this->generateStatusWithSpec($this->hs_min_n1, $this->hs_min_n2, $this->hs_max_n1, $this->hs_max_n2, $minHS, $maxHS);
+        $this->hs_status = $resultHeadspace['status'];
+        $this->hs_result = $resultHeadspace['result'];
+//        $this->currentStep = 5;
     }
 
     function __construct()
@@ -317,6 +369,11 @@ class Mu5tjDimensiWizard extends Component
         }
     }
 
+    public function step4Generate(): void
+    {
+        $this->specTable = Mu5tjLongsongSpecActive::query()->with(['specDetail', 'lini'])->where([['lini_id', '=', $this->kode_lini], ['flow_id', '=', 2]])->get();
+    }
+
 
     public function render()
     {
@@ -324,11 +381,15 @@ class Mu5tjDimensiWizard extends Component
         if ($this->currentStep === 1) {
             $this->step1Generate();
         }
+        if ($this->currentStep === 4) {
+            $this->step4Generate();
+        }
         return view('livewire.mu5tj-dimensi-wizard', [
             'list_lini' => $kode_lini_list,
             'generateCode' => $this->generateCode,
             'retryCount' => $this->retryCount,
             'status_code' => $this->statusCode,
+            'specTable' => $this->specTable,
         ]);
     }
 }

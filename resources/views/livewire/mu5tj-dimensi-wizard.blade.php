@@ -14,6 +14,9 @@
         <li class="nav-item">
             <span class="nav-link {{ $currentStep != 3 ? '' : 'active' }}">Step 3</span>
         </li>
+        <li class="nav-item">
+            <span class="nav-link {{ $currentStep != 4 ? '' : 'active' }}">Step 4</span>
+        </li>
     </ul>
     <div class="row pt-3">
         {{-- Step 1 --}}
@@ -558,17 +561,140 @@
                 <button class="btn btn-success" wire:click="thirdStepSubmit" type="button">Finish</button>
             </div>
         </div>
-    </div>
+        <div id="step4" style="display: {{ $currentStep != 4 ? 'none' : '' }}">
+            <div class="py-3 px-2 rounded bg-white">
+                <h3 class="mb-4">Headspace</h3>
+                <h4 class="mb-4">Spec</h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Lini</th>
+                        <th>MIN</th>
+                        <th>MAX</th>
+                    </tr>
 
-    <script>
-        $(document).ready(function () {
-            $('.numeric').each(function () {
-                $(this).on('input', function () {
-                    var sanitized = $(this).val().replace(/[^0-9.]/g, '');
-                    sanitized = sanitized.replace(/(.)\./, '$1');
-                    $(this).val(sanitized);
-                });
+                    </thead>
+                    <tbody>
+                    @if($specTable)
+                        @foreach($specTable as $spec)
+                            <tr>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$spec->lini->nama}}</td>
+                                <td>{{$spec->specDetail->attribute['hs_min']}}</td>
+                                <td>{{$spec->specDetail->attribute['hs_max']}}</td>
+                            </tr>
+                        @endforeach
+                    @endif
+
+                    </tbody>
+                </table>
+                {{$hs_result}}
+                {{$hs_status}}
+                <h4>Table Headspace</h4>
+                <div class="flex gap-3 content-center">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <button class="btn btn-light btn-sm" wire:click="resetHeadspace">Reset</button>
+                            </th>
+                            <th scope="col">Min N1-N2</th>
+                            <th scope="col">Max N1-N2</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">n1</th>
+                            <td class="input--custom-group">
+                                <input class="numeric" type="number" wire:model="hs_min_n1"
+                                       id="input-number"
+                                       min="0"
+                                       aria-describedby="hs_min_n1"
+                                       placeholder="HS Min N1"
+                                >
+                                <div class="{{$errors->first('hs_min_n1') ? 'error' : ''}}"/>
+                            </td>
+                            <td class="input--custom-group">
+                                <input class="numeric" type="number" wire:model="hs_max_n1"
+                                       id="input-number"
+                                       min="0"
+                                       aria-describedby="hs_max_n1"
+                                       placeholder="HS Max N1"
+                                >
+                                <div class="{{$errors->first('hs_max_n1') ? 'error' : ''}}"/>
+                            </td>
+                        </tr>
+                        @if($n === 2)
+                            <th scope="row">n2</th>
+                            <td class="input--custom-group">
+                                <input class="numeric" type="number" wire:model="hs_min_n2"
+                                       id="input-number"
+                                       min="0"
+                                       aria-describedby="hs_min_n2"
+                                       placeholder="HS Min N2"
+                                >
+                                <div class="{{$errors->first('hs_min_n2') ? 'error' : ''}}"/>
+                            </td>
+                            <td class="input--custom-group">
+                                <input class="numeric" type="number" wire:model="hs_max_n2"
+                                       id="input-number"
+                                       min="0"
+                                       aria-describedby="hs_max_n2"
+                                       placeholder="HS Max N2"
+                                >
+                                <div class="{{$errors->first('hs_max_n2') ? 'error' : ''}}"/>
+                            </td>
+                        @endif
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Min</th>
+                            <th scope="col">Max</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="input--custom-group align-middle">
+                                <input class="" type="number" wire:model="hs_min"
+                                       id="input-number"
+                                       min="0"
+                                       aria-describedby="hs_min"
+                                       placeholder="HS Min"
+                                >
+                                <div class="{{$errors->first('hs_min') ? 'error' : ''}}"/>
+                            </td>
+                            <td class="input--custom-group align-middle">
+                                <input class="" type="number" wire:model="hs_max"
+                                       id="input-number"
+                                       min="0"
+                                       aria-describedby="hs_max"
+                                       placeholder="HS Max"
+                                >
+                                <div class="{{$errors->first('hs_max') ? 'error' : ''}}"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn btn-secondary" type="button" wire:click="back(3)">Back</button>
+                <button class="btn btn-success" wire:click="fourthStepSubmit" type="button">Finish</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.numeric').each(function () {
+            $(this).on('input', function () {
+                var sanitized = $(this).val().replace(/[^0-9.]/g, '');
+                sanitized = sanitized.replace(/(.)\./, '$1');
+                $(this).val(sanitized);
             });
         });
-    </script>
+    });
+</script>
 

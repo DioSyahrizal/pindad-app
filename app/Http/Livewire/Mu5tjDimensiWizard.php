@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class Mu5tjDimensiWizard extends Component
 {
-    public $currentStep = 4;
+    public $currentStep = 1;
     public $tahun, $kode_lini = 1, $no_lot, $kode, $tanggal_create, $statusCode, $retryCount, $generateCode;
     public $n = 2;
     public $sample = 0;

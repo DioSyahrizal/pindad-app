@@ -14,12 +14,13 @@ use Livewire\Component;
 class Mu5tjDimensiWizard extends Component
 {
     public $currentStep = 1;
-    public $tahun, $kode_lini = 1, $no_lot, $kode, $tanggal_create, $statusCode, $retryCount, $generateCode;
+    public $tahun, $kode_lini = 1, $no_lot, $kode, $tanggal_create, $statusCode, $retryCount, $generateCode, $status;
     public $n = 2;
     public $sample = 0;
     public $jumlah = 20000;
+    public $status_retry = '';
+    public $specTable, $mato;
 
-    public $specTable;
 
 // Variables for 'p'
     public $p_min_n1 = 0, $p_min_n2 = 0;
@@ -60,6 +61,30 @@ class Mu5tjDimensiWizard extends Component
     public $hs_max_n1 = 0, $hs_max_n2 = 0;
     public $hs_min = 0, $hs_max = 0;
     public $hs_status = '', $hs_result = '';
+
+    // Variable for 'td';
+    public $td_min_n1 = 0, $td_min_n2 = 0;
+    public $td_max_n1 = 0, $td_max_n2 = 0;
+    public $td_min = 0, $td_max = 0;
+    public $td_status = '', $td_result = '';
+
+    // Variable for 'ta';
+    public $ta_min_n1 = 0, $ta_min_n2 = 0;
+    public $ta_max_n1 = 0, $ta_max_n2 = 0;
+    public $ta_min = 0, $ta_max = 0;
+    public $ta_status = '', $ta_result = '';
+
+    // Variable for 'klp';
+    public $klp_min_n1 = 0, $klp_min_n2 = 0;
+    public $klp_max_n1 = 0, $klp_max_n2 = 0;
+    public $klp_min = 0, $klp_max = 0;
+    public $klp_status = '', $klp_result = '';
+
+    // Variable for 'dk';
+    public $dk_min_n1 = 0, $dk_min_n2 = 0;
+    public $dk_max_n1 = 0, $dk_max_n2 = 0;
+    public $dk_min = 0, $dk_max = 0;
+    public $dk_status = '', $dk_result = '';
 
 
     public function back($step): void
@@ -149,6 +174,54 @@ class Mu5tjDimensiWizard extends Component
         $this->hs_result = '';
     }
 
+    public function resetTebalDasar(): void
+    {
+        $this->td_min_n1 = 0;
+        $this->td_min_n2 = 0;
+        $this->td_max_n1 = 0;
+        $this->td_max_n2 = 0;
+        $this->td_min = 0;
+        $this->td_max = 0;
+        $this->td_status = '';
+        $this->td_result = '';
+    }
+
+    public function resetTinggiAnvil(): void
+    {
+        $this->ta_min_n1 = 0;
+        $this->ta_min_n2 = 0;
+        $this->ta_max_n1 = 0;
+        $this->ta_max_n2 = 0;
+        $this->ta_min = 0;
+        $this->ta_max = 0;
+        $this->ta_status = '';
+        $this->ta_result = '';
+    }
+
+    public function resetKLPenggalak(): void
+    {
+        $this->klp_min_n1 = 0;
+        $this->klp_min_n2 = 0;
+        $this->klp_max_n1 = 0;
+        $this->klp_max_n2 = 0;
+        $this->klp_min = 0;
+        $this->klp_max = 0;
+        $this->klp_status = '';
+        $this->klp_result = '';
+    }
+
+    public function resetDiameterKerongan(): void
+    {
+        $this->dk_min_n1 = 0;
+        $this->dk_min_n2 = 0;
+        $this->dk_max_n1 = 0;
+        $this->dk_max_n2 = 0;
+        $this->dk_min = 0;
+        $this->dk_max = 0;
+        $this->dk_status = '';
+        $this->dk_result = '';
+    }
+
     public function generateLubangApi(): void
     {
         $countAll = $this->dla_0lb + $this->dla_1lb + $this->dla_3lb + $this->dla_4lb;
@@ -225,8 +298,8 @@ class Mu5tjDimensiWizard extends Component
                 $newResult = 'TB';
                 $newStatus = 'MINMAX';
             } else {
-                $newResult = $status;
-                $newStatus = $result;
+                $newResult = $result;
+                $newStatus = $status;
             }
         } else if ($status == 'MAX') {
             if ($min) {
@@ -236,6 +309,9 @@ class Mu5tjDimensiWizard extends Component
                 $newResult = $result;
                 $newStatus = $status;
             }
+        } else {
+            $newResult = $result;
+            $newStatus = $status;
         }
         return array('status' => $newStatus, 'result' => $newResult);
     }
@@ -325,14 +401,216 @@ class Mu5tjDimensiWizard extends Component
             'hs_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
             'hs_min' => 'required|numeric|min:0',
             'hs_max' => 'required|numeric|min:0',
+            'td_min_n1' => 'required|numeric|min:0',
+            'td_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'td_max_n1' => 'required|numeric|min:0',
+            'td_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'td_min' => 'required|numeric|min:0',
+            'td_max' => 'required|numeric|min:0',
+            'ta_min_n1' => 'required|numeric|min:0',
+            'ta_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'ta_max_n1' => 'required|numeric|min:0',
+            'ta_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'ta_min' => 'required|numeric|min:0',
+            'ta_max' => 'required|numeric|min:0',
         ]);
         $minHS = $this->hs_min < $this->specTable->first()->specDetail->attribute['hs_min'];
         $maxHS = $this->hs_max > $this->specTable->first()->specDetail->attribute['hs_max'];
-
         $resultHeadspace = $this->generateStatusWithSpec($this->hs_min_n1, $this->hs_min_n2, $this->hs_max_n1, $this->hs_max_n2, $minHS, $maxHS);
         $this->hs_status = $resultHeadspace['status'];
         $this->hs_result = $resultHeadspace['result'];
-//        $this->currentStep = 5;
+
+        $minTD = $this->td_min < $this->specTable->first()->specDetail->attribute['td_min'];
+        $maxTD = $this->td_max > $this->specTable->first()->specDetail->attribute['td_max'];
+        $resultTebalDasar = $this->generateStatusWithSpec($this->td_min_n1, $this->td_min_n2, $this->td_max_n1, $this->td_max_n2, $minTD, $maxTD);
+        $this->td_status = $resultTebalDasar['status'];
+        $this->td_result = $resultTebalDasar['result'];
+
+        $minTA = $this->ta_min < $this->specTable->first()->specDetail->attribute['ta_min'];
+        $maxTA = $this->ta_max > $this->specTable->first()->specDetail->attribute['ta_max'];
+        $resultTinggiAnvil = $this->generateStatusWithSpec($this->ta_min_n1, $this->ta_min_n2, $this->ta_max_n1, $this->ta_max_n2, $minTA, $maxTA);
+        $this->ta_status = $resultTinggiAnvil['status'];
+        $this->ta_result = $resultTinggiAnvil['result'];
+        $this->currentStep = 5;
+    }
+
+    public function fifthStepSubmit(): void
+    {
+        $this->validate([
+            'klp_min_n1' => 'required|numeric|min:0',
+            'klp_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'klp_max_n1' => 'required|numeric|min:0',
+            'klp_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'klp_min' => 'required|numeric|min:0',
+            'klp_max' => 'required|numeric|min:0',
+            'dk_min_n1' => 'required|numeric|min:0',
+            'dk_min_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dk_max_n1' => 'required|numeric|min:0',
+            'dk_max_n2' => $this->n === 2 ? 'required|numeric|min:0' : '',
+            'dk_min' => 'required|numeric|min:0',
+            'dk_max' => 'required|numeric|min:0',
+        ]);
+
+        $minKLP = $this->klp_min < $this->specTable->first()->specDetail->attribute['klp_min'];
+        $maxKLP = $this->klp_max > $this->specTable->first()->specDetail->attribute['klp_max'];
+        $resultKLPenggalak = $this->generateStatusWithSpec($this->klp_min_n1, $this->klp_min_n2, $this->klp_max_n1, $this->klp_max_n2, $minKLP, $maxKLP);
+        $this->klp_status = $resultKLPenggalak['status'];
+        $this->klp_result = $resultKLPenggalak['result'];
+
+        $minDK = $this->dk_min < $this->specTable->first()->specDetail->attribute['dk_min'];
+        $maxDK = $this->dk_max > $this->specTable->first()->specDetail->attribute['dk_max'];
+        $resultDK = $this->generateStatusWithSpec($this->dk_min_n1, $this->dk_min_n2, $this->dk_max_n1, $this->dk_max_n2, $minDK, $maxDK);
+        $this->dk_status = $resultDK['status'];
+        $this->dk_result = $resultDK['result'];
+
+        $this->submit();
+    }
+
+    public function totalAll()
+    {
+        return $this->p_min_n1 + $this->p_min_n2 + $this->p_max_n1 + $this->p_max_n2 + $this->dd_min_n1 + $this->dd_min_n2 + $this->dd_max_n1 + $this->dd_max_n2 + $this->dmd_min_n1 + $this->dmd_min_n2 + $this->dmd_max_n1 + $this->dmd_max_n2 + $this->mb_min_n1 + $this->mb_min_n2 + $this->mb_max_n1 + $this->mb_max_n2 + $this->dlp_min_n1 + $this->dlp_min_n2 + $this->dlp_max_n1 + $this->dlp_max_n2 + $this->dml_min_n1 + $this->dml_min_n2 + $this->dml_max_n1 + $this->dml_max_n2 + $this->hs_min_n1 + $this->hs_min_n2 + $this->hs_max_n1 + $this->hs_max_n2 + $this->td_min_n1 + $this->td_min_n2 + $this->td_max_n1 + $this->td_max_n2 + $this->ta_min_n1 + $this->ta_min_n2 + $this->ta_max_n1 + $this->ta_max_n2 + $this->klp_min_n1 + $this->klp_min_n2 + $this->klp_max_n1 + $this->klp_max_n2 + $this->dk_min_n1 + $this->dk_min_n2 + $this->dk_max_n1 + $this->dk_max_n2;
+    }
+
+    public function generateMato(): void
+    {
+        if ($this->totalAll() > 1) {
+            $this->mato = 0;
+            $this->status = 'Tolak';
+        } elseif (
+            $this->p_result === 'TB' || $this->dd_result === 'TB' || $this->dla_result === 'TB' ||
+            $this->dmd_result === 'TB' || $this->mb_result === 'TB' || $this->dlp_result === 'TB' ||
+            $this->dml_result === 'TB' || $this->hs_result === 'TB' || $this->td_result === 'TB' ||
+            $this->ta_result === 'TB' || $this->klp_result === 'TB' || $this->dk_result === 'TB'
+        ) {
+            $this->status = 'Tolak';
+            $this->mato = 0;
+        } else {
+            $this->status = 'Terima';
+            $this->mato = 1;
+        }
+    }
+
+    public function submit(): void
+    {
+        $isExist = false;
+        $retry = 0;
+        $dataFromDb = Mu5tjLongsongDimensi::where([['kode', '=', $this->generateCode]])->orderBy('created_at', 'desc')->first();
+        if ($dataFromDb) {
+            $retry = $dataFromDb->retry;
+            $isExist = true;
+        }
+
+        $this->generateMato();
+
+        $parentId = Mu5tj_Longsong::where([['kode', '=', $this->generateCode]])->first()->id;
+
+        Mu5tjLongsongDimensi::create([
+            'parent_id' => $parentId,
+            'user_id' => auth()->user()->id,
+            'spec_id' => $this->specTable->first()->id,
+            'lini_id' => $this->kode_lini,
+            'no_lot' => $this->no_lot,
+            'kode' => $this->generateCode,
+            'jumlah' => $this->jumlah,
+            'n' => $this->n,
+            'sample' => $this->sample,
+            'p_min_n1' => $this->p_min_n1,
+            'p_min_n2' => $this->p_min_n2,
+            'p_max_n1' => $this->p_max_n1,
+            'p_max_n2' => $this->p_max_n2,
+            'p_status' => $this->p_status,
+            'p_result' => $this->p_result,
+            'dd_min_n1' => $this->dd_min_n1,
+            'dd_min_n2' => $this->dd_min_n2,
+            'dd_max_n1' => $this->dd_max_n1,
+            'dd_max_n2' => $this->dd_max_n2,
+            'dd_status' => $this->dd_status,
+            'dd_result' => $this->dd_result,
+            'dla_0lb' => $this->dla_0lb,
+            'dla_1lb' => $this->dla_1lb,
+            'dla_3lb' => $this->dla_3lb,
+            'dla_4lb' => $this->dla_4lb,
+            'dla_status' => $this->dla_status,
+            'dla_result' => $this->dla_result,
+            'dmd_min_n1' => $this->dmd_min_n1,
+            'dmd_min_n2' => $this->dmd_min_n2,
+            'dmd_max_n1' => $this->dmd_max_n1,
+            'dmd_max_n2' => $this->dmd_max_n2,
+            'dmd_status' => $this->dmd_status,
+            'dmd_result' => $this->dmd_result,
+            'mb_min_n1' => $this->mb_min_n1,
+            'mb_min_n2' => $this->mb_min_n2,
+            'mb_max_n1' => $this->mb_max_n1,
+            'mb_max_n2' => $this->mb_max_n2,
+            'mb_status' => $this->mb_status,
+            'mb_result' => $this->mb_result,
+            'dlp_min_n1' => $this->dlp_min_n1,
+            'dlp_min_n2' => $this->dlp_min_n2,
+            'dlp_max_n1' => $this->dlp_max_n1,
+            'dlp_max_n2' => $this->dlp_max_n2,
+            'dlp_status' => $this->dlp_status,
+            'dlp_result' => $this->dlp_result,
+            'dml_min_n1' => $this->dml_min_n1,
+            'dml_min_n2' => $this->dml_min_n2,
+            'dml_max_n1' => $this->dml_max_n1,
+            'dml_max_n2' => $this->dml_max_n2,
+            'dml_status' => $this->dml_status,
+            'dml_result' => $this->dml_result,
+            'hs_min_n1' => $this->hs_min_n1,
+            'hs_min_n2' => $this->hs_min_n2,
+            'hs_max_n1' => $this->hs_max_n1,
+            'hs_max_n2' => $this->hs_max_n2,
+            'hs_min' => $this->hs_min,
+            'hs_max' => $this->hs_max,
+            'hs_status' => $this->hs_status,
+            'hs_result' => $this->hs_result,
+            'td_min_n1' => $this->td_min_n1,
+            'td_min_n2' => $this->td_min_n2,
+            'td_max_n1' => $this->td_max_n1,
+            'td_max_n2' => $this->td_max_n2,
+            'td_min' => $this->td_min,
+            'td_max' => $this->td_max,
+            'td_status' => $this->td_status,
+            'td_result' => $this->td_result,
+            'ta_min_n1' => $this->ta_min_n1,
+            'ta_min_n2' => $this->ta_min_n2,
+            'ta_max_n1' => $this->ta_max_n1,
+            'ta_max_n2' => $this->ta_max_n2,
+            'ta_min' => $this->ta_min,
+            'ta_max' => $this->ta_max,
+            'ta_status' => $this->ta_status,
+            'ta_result' => $this->ta_result,
+            'klp_min_n1' => $this->klp_min_n1,
+            'klp_min_n2' => $this->klp_min_n2,
+            'klp_max_n1' => $this->klp_max_n1,
+            'klp_max_n2' => $this->klp_max_n2,
+            'klp_min' => $this->klp_min,
+            'klp_max' => $this->klp_max,
+            'klp_status' => $this->klp_status,
+            'klp_result' => $this->klp_result,
+            'dk_min_n1' => $this->dk_min_n1,
+            'dk_min_n2' => $this->dk_min_n2,
+            'dk_max_n1' => $this->dk_max_n1,
+            'dk_max_n2' => $this->dk_max_n2,
+            'dk_min' => $this->dk_min,
+            'dk_max' => $this->dk_max,
+            'dk_status' => $this->dk_status,
+            'dk_result' => $this->dk_result,
+            'mato' => $this->mato,
+            'retry' => $isExist ? $retry + 1 : 0,
+            'status_retry' => $this->status_retry ? $this->status_retry : '-',
+            'status' => $this->status,
+            'tanggal_create' => $this->tanggal_create,
+        ]);
+
+        // update flow_id to 2 when status is passed
+        if ($this->mato === 1) {
+            Mu5tj_Longsong::where([['kode', '=', $this->generateCode]])->update([
+                'flow_id' => 3,
+            ]);
+        }
+
+        redirect('/5mm/mu5tj/longsong/dimensi')->with('success', 'You have successfully created a hb-1.');
     }
 
     function __construct()
@@ -369,6 +647,34 @@ class Mu5tjDimensiWizard extends Component
         }
     }
 
+    public function step2Generate(): void
+    {
+        if ($this->n == 1) {
+            $this->p_min_n2 = 0;
+            $this->p_max_n2 = 0;
+            $this->dd_min_n2 = 0;
+            $this->dd_max_n2 = 0;
+            $this->dmd_min_n2 = 0;
+            $this->dmd_max_n2 = 0;
+            $this->mb_min_n2 = 0;
+            $this->mb_max_n2 = 0;
+            $this->dlp_min_n2 = 0;
+            $this->dlp_max_n2 = 0;
+            $this->dml_min_n2 = 0;
+            $this->dml_max_n2 = 0;
+            $this->hs_min_n2 = 0;
+            $this->hs_max_n2 = 0;
+            $this->td_min_n2 = 0;
+            $this->td_max_n2 = 0;
+            $this->ta_min_n2 = 0;
+            $this->ta_max_n2 = 0;
+            $this->klp_min_n2 = 0;
+            $this->klp_max_n2 = 0;
+            $this->dk_min_n2 = 0;
+            $this->dk_max_n2 = 0;
+        }
+    }
+
     public function step4Generate(): void
     {
         $this->specTable = Mu5tjLongsongSpecActive::query()->with(['specDetail', 'lini'])->where([['lini_id', '=', $this->kode_lini], ['flow_id', '=', 2]])->get();
@@ -381,7 +687,10 @@ class Mu5tjDimensiWizard extends Component
         if ($this->currentStep === 1) {
             $this->step1Generate();
         }
-        if ($this->currentStep === 4) {
+        if ($this->currentStep === 2) {
+            $this->step2Generate();
+        }
+        if ($this->currentStep === 4 || $this->currentStep === 5) {
             $this->step4Generate();
         }
         return view('livewire.mu5tj-dimensi-wizard', [
@@ -390,6 +699,7 @@ class Mu5tjDimensiWizard extends Component
             'retryCount' => $this->retryCount,
             'status_code' => $this->statusCode,
             'specTable' => $this->specTable,
+            'n' => $this->n,
         ]);
     }
 }

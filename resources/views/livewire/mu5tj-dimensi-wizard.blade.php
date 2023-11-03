@@ -23,6 +23,7 @@
     </ul>
     <div class="row pt-3">
         {{-- Step 1 --}}
+        <h3>Kode: {{$generateCode !== 'not valid' ? $generateCode : ''}}</h3>
         <div id="step1" class="needs-validation" style="display: {{ $currentStep != 1 ? 'none' : '' }}">
 
             @if($status_code === 'success')

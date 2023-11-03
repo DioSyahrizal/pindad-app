@@ -14,6 +14,7 @@
     </ul>
     <div class="row pt-3">
         {{-- Step 1 --}}
+        <h3>Kode: {{$generateCode !== 'not valid' ? $generateCode : ''}}</h3>
         <div id="step1" class="needs-validation" style="display: {{ $currentStep != 1 ? 'none' : '' }}">
 
             @if($status_code === 'success')
@@ -239,16 +240,6 @@
             >Next
             </button>
         </div>
-
-        {{--        --}}{{-- Step 3 --}}
-        {{--        <div id="step3" style="display: {{ $currentStep != 3 ? 'none' : '' }}">--}}
-        {{--            <ul class="list-group list-group-flush">--}}
-        {{--                <li class="list-group-item">No Lot: {{$no_lot}}</li>--}}
-        {{--                <li class="list-group-item">Kode Lini: {{ $kode_lini }}</li>--}}
-        {{--            </ul>--}}
-        {{--            <button class="btn btn-danger" type="button" wire:click="back(2)">Back</button>--}}
-        {{--            <button class="btn btn-success" wire:click="submitForm" type="button">Finish</button>--}}
-        {{--        </div>--}}
     </div>
 </div>
 

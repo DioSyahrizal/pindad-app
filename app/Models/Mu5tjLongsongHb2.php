@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mu5TjLongsongHb2 extends Model
+class Mu5tjLongsongHb2 extends Model
 {
     protected $table = 'mu5tj_longsong_hb2';
     protected $fillable = [

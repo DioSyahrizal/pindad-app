@@ -55,7 +55,7 @@
                                         <td><a href="/5mm/mu5tj/longsong/dimensi/{{ $child->id }}/detail">{{ $child->no_lot
                                                 }}</a>
                                         </td>
-                                        <td>{{$child->status}}</td>
+                                        <td class="{{$child->status == 'Tolak' ? '!bg-red-400' : '!bg-green-400' }} text-white">{{$child->status}}</td>
                                         <td>{{$child->user->codename}}</td>
                                         <td>{{$child->p_status}}</td>
                                         <td>{{$child->p_result}}</td>

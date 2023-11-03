@@ -1192,6 +1192,9 @@
                 </div>
                 <button class="btn btn-secondary" type="button" wire:click="back(4)">Back</button>
                 <button class="btn btn-success" wire:click="fifthStepSubmit" type="button">Finish</button>
+                <div wire:loading wire:target="fifthStepSubmit">
+                    Processing ...
+                </div>
             </div>
         </div>
     </div>

@@ -17,4 +17,10 @@ class MU5TJDimensiController extends Controller
     {
         return view('mu5tj-dimensi-create');
     }
+
+    public function viewSinglePost(Mu5tjLongsongDimensi $dimensi)
+    {
+
+        return view('mu5tj-dimensi-detail', compact('dimensi'));
+    }
 }

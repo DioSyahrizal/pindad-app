@@ -3,11 +3,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-6">
-                    <h1 class="m-0">MU5-TJ</h1>
+                    <h1 class="m-0">MU5-TJ HB-2</h1>
                 </div>
                 <div class="col-6">
                     <div class="float-right">
-                        <a href="/5mm/mu5tj/longsong/hb-1/create" class="btn btn-primary">Create</a>
+                        <a href="/5mm/mu5tj/longsong/hb-2/create" class="btn btn-primary">Create</a>
                     </div>
                 </div>
             </div>
@@ -66,55 +66,7 @@
             $('#myTable').DataTable({
                 dom: 'Bfrt',
                 responsive: true,
-                "pageLength": 10, // Set the number of records per page
-                // ajax: {
-                //     url: '/5mm/mu5tj/longsong/hb-1/table',
-                //     type: 'GET',
-                // },
-                // columnDefs: [
-                //     {
-                //         targets: 0,
-                //         data: "tanggal_create",
-                //         render: function (data) {
-                //             const format = new Intl.DateTimeFormat('id', {dateStyle: 'medium'})
-                //             return format.format(new Date(data))
-                //         }
-                //     },
-                //     {
-                //         orderable: false,
-                //         targets: 1,
-                //         data: "kode_lini",
-                //         render: function (data) {
-                //             return data.nama;
-                //         }
-                //     },
-                //     {
-                //         orderable: false,
-                //         targets: 2,
-                //         data: null,
-                //         render: function (data) {
-                //             return `<a href="/5mm/mu5tj/longsong/hb-1/${data.id}/detail">${data.no_lot}</a>`;
-                //         }
-                //     },
-                //     {
-                //         targets: 3,
-                //         data: null,
-                //         render: function (data) {
-                //             return `<span class="badge ${data.mato === 1 ? 'badge-primary' : 'badge-danger'}">${data.status}</span>`;
-                //         }
-                //     },
-                //     {
-                //         targets: 4,
-                //         data: 'status_bakar',
-                //     },
-                //     {
-                //         targets: 5,
-                //         data: null,
-                //         render: function (data) {
-                //             return data.user.codename;
-                //         }
-                //     },
-                // ],
+                "pageLength": 10,
             });
         });
     </script>

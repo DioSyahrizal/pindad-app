@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MU5TJController;
 use App\Http\Controllers\MU5TJDimensiController;
+use App\Http\Controllers\MU5TJHB2Controller;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,11 @@ Route::prefix('5mm')->group(function () {
 
             Route::get('/dimensi', [MU5TJDimensiController::class, 'getAll'])->middleware('mustBeLoggedIn');
             Route::get('/dimensi/create', [MU5TJDimensiController::class, 'create'])->middleware('mustBeLoggedIn');
+            Route::get('/dimensi/{dimensi}/detail', [MU5TJDimensiController::class, 'viewSinglePost'])->where('dimensi', '[0-9]+')->middleware('mustBeLoggedIn');
+
+            Route::get('/hb-2', [MU5TJHB2Controller::class, 'getAll'])->middleware('mustBeLoggedIn');
+            Route::get('/hb-2/create', [MU5TJHB2Controller::class, 'create'])->middleware('mustBeLoggedIn');
+
         });
     });
 

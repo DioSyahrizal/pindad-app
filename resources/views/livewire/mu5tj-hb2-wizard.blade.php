@@ -1,9 +1,4 @@
 <div class="pt-5">
-    {{--    @if(!empty($successMessage))--}}
-    {{--        <div class="alert alert-success">--}}
-    {{--            {{ $successMessage }}--}}
-    {{--        </div>--}}
-    {{--    @endif--}}
     <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
             <span class="nav-link {{ $currentStep != 1 ? '' : 'active' }}">Step 1</span>

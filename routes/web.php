@@ -3,6 +3,7 @@
 use App\Http\Controllers\MU5TJController;
 use App\Http\Controllers\MU5TJDimensiController;
 use App\Http\Controllers\MU5TJHB2Controller;
+use App\Http\Controllers\Mu5tjLongsongVisuilController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,8 @@ Route::prefix('5mm')->group(function () {
             Route::get('/hb-2', [MU5TJHB2Controller::class, 'getAll'])->middleware('mustBeLoggedIn');
             Route::get('/hb-2/create', [MU5TJHB2Controller::class, 'create'])->middleware('mustBeLoggedIn');
 
+            Route::get('/visuil', [Mu5tjLongsongVisuilController::class, 'getAll'])->middleware('mustBeLoggedIn');
+            Route::get('/visuil/create', [Mu5tjLongsongVisuilController::class, 'create'])->middleware('mustBeLoggedIn');
         });
     });
 

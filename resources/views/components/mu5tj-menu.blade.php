@@ -34,9 +34,9 @@
                     </a>
                 </li>
                 <li class="nav-item ml-3">
-                    <a href="/5mm/mu5tj/longsong/visual" class="nav-link" id="visual">
+                    <a href="/5mm/mu5tj/longsong/visuil" class="nav-link" id="visuil">
                         <i class="nav-icon fas fa-circle"></i>
-                        <p>Visual</p>
+                        <p>Visuil</p>
                     </a>
                 </li>
                 <li class="nav-item ml-3">

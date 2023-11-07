@@ -3,11 +3,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-6">
-                    <h1 class="m-0">MU5-TJ HB-2</h1>
+                    <h1 class="m-0">MU5-TJ Visuil</h1>
                 </div>
                 <div class="col-6">
                     <div class="float-right">
-                        <a href="/5mm/mu5tj/longsong/hb-2/create" class="btn btn-primary">Create</a>
+                        <a href="/5mm/mu5tj/longsong/visuil/create" class="btn btn-primary">Create</a>
                     </div>
                 </div>
             </div>
@@ -38,8 +38,7 @@
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $child->tanggal_create->format('d/m/Y') }}</td>
                                         <td>{{ $child->kodeLini->nama }}</td>
-                                        <td><a href="/5mm/mu5tj/longsong/hb-1/{{ $child->id }}/detail">{{ $child->no_lot
-                                                }}</a></td>
+                                        <td>{{ $child->no_lot }}</td>
                                         <td class="{{$child->status == 'PASSED' ? '!bg-green-400' : '!bg-red-400 text-white'}}">
                                             {{$child->status}}
                                         </td>

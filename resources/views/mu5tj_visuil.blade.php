@@ -28,7 +28,6 @@
                                     <th scope="col">Lini</th>
                                     <th scope="col">No. Lot</th>
                                     <th scope="col">Hasil</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Inspektur</th>
                                 </tr>
                                 </thead>
@@ -42,7 +41,6 @@
                                         <td class="{{$child->status == 'Terima' ? '!bg-green-400' : '!bg-red-400 text-white'}}">
                                             {{$child->status}}
                                         </td>
-                                        <td>{{ $child->status_bakar }}</td>
                                         <td>{{ $child->user->codename }}</td>
                                     </tr>
                                 @endforeach

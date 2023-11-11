@@ -39,7 +39,7 @@
                                         <td>{{ $child->tanggal_create->format('d/m/Y') }}</td>
                                         <td>{{ $child->kodeLini->nama }}</td>
                                         <td>{{ $child->no_lot }}</td>
-                                        <td class="{{$child->status == 'PASSED' ? '!bg-green-400' : '!bg-red-400 text-white'}}">
+                                        <td class="{{$child->status == 'Terima' ? '!bg-green-400' : '!bg-red-400 text-white'}}">
                                             {{$child->status}}
                                         </td>
                                         <td>{{ $child->status_bakar }}</td>

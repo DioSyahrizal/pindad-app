@@ -34,3 +34,15 @@ input::-webkit-inner-spin-button {
     display: grid;
     grid-template-columns: 100px 100px 1fr;
 }
+
+.column-invalid {
+    @apply bg-red-400 !important;
+}
+
+.column-invalid > td {
+    @apply text-white !important;
+}
+
+.dtr-details {
+    @apply text-black !important;
+}

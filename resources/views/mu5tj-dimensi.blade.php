@@ -48,7 +48,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($data as $child)
-                                    <tr>
+                                    <tr class="{{$child-> status != 'Terima' ? 'column-invalid' : ''}}">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $child->tanggal_create->format('d/m/Y') }}</td>
                                         <td>{{ $child->kodeLini->nama }}</td>

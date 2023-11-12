@@ -3,11 +3,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-6">
-                    <h1 class="m-0">MU5-TJ Visuil</h1>
+                    <h1 class="m-0">MU5-TJ Pengiriman</h1>
                 </div>
                 <div class="col-6">
                     <div class="float-right">
-                        <a href="/5mm/mu5tj/longsong/visuil/create" class="btn btn-primary">Create</a>
+                        <a href="/5mm/mu5tj/longsong/pengiriman/create" class="btn btn-primary">Create</a>
                     </div>
                 </div>
             </div>
@@ -24,23 +24,21 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Lot Kirim</th>
                                     <th scope="col">Lini</th>
-                                    <th scope="col">No. Lot</th>
-                                    <th scope="col">Hasil</th>
+                                    <th scope="col">No.Lot</th>
+                                    <th scope="col">Tgl Pengiriman</th>
                                     <th scope="col">Inspektur</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($data as $child )
-                                    <tr class="{{$child-> status != 'Terima' ? 'column-invalid' : ''}}">
+                                    <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $child->tanggal_create->format('d/m/Y') }}</td>
+                                        <td>{{ $child->lot_kirim }}</td>
                                         <td>{{ $child->kodeLini->nama }}</td>
                                         <td>{{ $child->no_lot }}</td>
-                                        <td class="{{$child->status == 'Terima' ? '!bg-green-400' : ''}}">
-                                            {{$child->status}}
-                                        </td>
+                                        <td>{{ $child->tgl_pengiriman->format('d/m/Y') }}</td>
                                         <td>{{ $child->user->codename }}</td>
                                     </tr>
                                 @endforeach

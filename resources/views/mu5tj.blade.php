@@ -34,8 +34,8 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($data as $child )
-                                    <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
+                                    <tr class="{{$child-> status != 'PASSED' ? 'column-invalid' : ''}}">
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $child->tanggal_create->format('d/m/Y') }}</td>
                                         <td>{{ $child->kodeLini->nama }}</td>
                                         <td><a href="/5mm/mu5tj/longsong/hb-1/{{ $child->id }}/detail">{{ $child->no_lot

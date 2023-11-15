@@ -5,12 +5,40 @@ namespace App\Http\Livewire;
 use App\Models\Mu5tj_Longsong;
 use App\Models\Mu5tjKodelini;
 use App\Models\Mu5tjLongsongPengiriman;
-use App\Models\Mu5tjLongsongVisuil;
 use Carbon\Carbon;
 use Livewire\Component;
 
+
 class Mu5tjPengirimanLivewire extends Component
 {
+    public function confirmed(): void
+    {
+        Mu5tjLongsongPengiriman::create([
+            'parent_id' => Mu5tj_Longsong::where('kode', $this->generateCode)->first()->id,
+            'user_id' => auth()->user()->id,
+            'lini_id' => $this->kode_lini,
+            'no_lot' => $this->no_lot,
+            'kode' => $this->generateCode,
+            'kode_kirim' => $this->kode_kirim,
+            'lot_kirim' => $this->lot_kirim,
+            'tgl_pengiriman' => $this->tgl_pengiriman,
+            'mato' => 1,
+            'status' => 'Kirim',
+            'keterangan' => $this->keterangan,
+        ]);
+        Mu5tj_Longsong::where([['kode', '=', $this->generateCode]])->update([
+            'flow_id' => 6,
+        ]);
+        redirect('/5mm/mu5tj/longsong/pengiriman')->with('success', 'You have successfully created a pengiriman.');
+    }
+
+    public function getListeners()
+    {
+        return [
+            'confirmed'
+        ];
+    }
+
     public $currentStep = 1;
     public $no_lot, $kode_lini, $tahun, $keterangan, $lot_kirim, $kode_kirim;
     public $generateCode = '';
@@ -64,26 +92,6 @@ class Mu5tjPengirimanLivewire extends Component
         }
     }
 
-    public function submit(): void
-    {
-        Mu5tjLongsongPengiriman::create([
-            'parent_id' => Mu5tj_Longsong::where('kode', $this->generateCode)->first()->id,
-            'user_id' => auth()->user()->id,
-            'lini_id' => $this->kode_lini,
-            'no_lot' => $this->no_lot,
-            'kode' => $this->generateCode,
-            'kode_kirim' => $this->kode_kirim,
-            'lot_kirim' => $this->lot_kirim,
-            'tgl_pengiriman' => $this->tgl_pengiriman,
-            'mato' => 1,
-            'status' => 'Kirim',
-            'keterangan' => $this->keterangan,
-        ]);
-        Mu5tj_Longsong::where([['kode', '=', $this->generateCode]])->update([
-            'flow_id' => 6,
-        ]);
-        redirect('/5mm/mu5tj/longsong/pengiriman')->with('success', 'You have successfully created a pengiriman.');
-    }
 
     public function render()
     {

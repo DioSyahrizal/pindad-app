@@ -88,7 +88,7 @@
                 </div>
                 @enderror
             </div>
-            <button class="btn btn-primary" wire:click="submit"
+            <button class="btn btn-primary submit"
                     @if($status_code !== 'success')
                         disabled
                     @endif
@@ -98,15 +98,35 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        $('.numeric').each(function () {
-            $(this).on('input', function () {
-                var sanitized = $(this).val().replace(/[^0-9.]/g, '');
-                sanitized = sanitized.replace(/(.)\./, '$1');
-                $(this).val(sanitized);
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.numeric').each(function () {
+                $(this).on('input', function () {
+                    var sanitized = $(this).val().replace(/[^0-9.]/g, '');
+                    sanitized = sanitized.replace(/(.)\./, '$1');
+                    $(this).val(sanitized);
+                });
             });
         });
-    });
-</script>
+        $('.submit').click(function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Submit Pengiriman?',
+                text: "Apakah anda yakin mau melakukan pengiriman",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Konfirmasi',
+                cancelButtonText: 'Batalkan',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.livewire.emit('confirmed');
+                }
+            })
+        });
+    </script>
+@endpush
+
 

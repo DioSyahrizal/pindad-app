@@ -79,7 +79,6 @@
             $('#myTable').DataTable({
                 dom: 'Brt',
                 responsive: true,
-                "pageLength": 10, // Set the number of records per page
                 // ajax: {
                 //     url: '/5mm/mu5tj/longsong/hb-1/table',
                 //     type: 'GET',

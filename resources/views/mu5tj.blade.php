@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-6">
-                    <h1 class="m-0">MU5-TJ</h1>
+                    <h1 class="m-0">MU5-TJ HB-1</h1>
                 </div>
                 <div class="col-6">
                     <div class="float-right">
@@ -20,6 +20,19 @@
                 <div class="panel-body">
                     <div class="card">
                         <div class="card-body">
+
+                            <form action="/5mm/mu5tj/longsong/hb-1" method="GET">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default"><i
+                                            class="fa fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Default"
+                                           value="{{ $search }}" name="search"
+                                           placeholder="Search by No. Lot"
+                                           aria-describedby="inputGroup-sizing-default">
+                                </div>
+                            </form>
                             <table id="myTable" class="table table-responsive-md">
                                 <thead>
                                 <tr>
@@ -64,7 +77,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#myTable').DataTable({
-                dom: 'Bfrt',
+                dom: 'Brt',
                 responsive: true,
                 "pageLength": 10, // Set the number of records per page
                 // ajax: {

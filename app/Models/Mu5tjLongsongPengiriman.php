@@ -34,4 +34,14 @@ class Mu5tjLongsongPengiriman extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function dimensi()
+    {
+        return $this->hasOne(Mu5tjLongsongDimensi::class, 'parent_id', 'id')->where('mato', '=', 1);
+    }
+
+    public function visuil()
+    {
+        return $this->hasOne(Mu5tjLongsongVisuil::class, 'parent_id', 'id')->where('mato', '=', 1);
+    }
 }

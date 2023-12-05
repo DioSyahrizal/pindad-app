@@ -35,7 +35,9 @@
                                 @foreach ($data as $child )
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $child->lot_kirim }}</td>
+                                        <td>
+                                            <a href="/5mm/mu5tj/longsong/pengiriman/{{ $child->id }}/detail">{{$child->lot_kirim}}</a>
+                                        </td>
                                         <td>{{ $child->kodeLini->nama }}</td>
                                         <td>{{ $child->no_lot }}</td>
                                         <td>{{ $child->tgl_pengiriman->format('d/m/Y') }}</td>

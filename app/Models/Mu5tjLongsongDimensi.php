@@ -126,4 +126,5 @@ class Mu5tjLongsongDimensi extends Model
     {
         return $this->hasOne(Mu5tjLongsongSpec::class, 'id', 'spec_id');
     }
+    
 }

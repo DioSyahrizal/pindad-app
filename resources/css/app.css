@@ -46,3 +46,13 @@ input::-webkit-inner-spin-button {
 .dtr-details {
     @apply text-black !important;
 }
+
+.grid--dimensi {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 600px 1fr 1fr 200px;
+}
+
+.grid--detail-dimensi {
+    display: grid;
+    grid-template-columns: 350px repeat(4, 1fr);
+}

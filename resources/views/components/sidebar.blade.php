@@ -28,7 +28,7 @@
                     <a id="5mm" href="#" class="nav-link">
                         <i class="nav-icon fas fa-circle"></i>
                         <p>
-                            5 mm
+                            5.56 mm
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -46,15 +46,15 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            6 mm
+                            7.62 mm
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/mu6tj" class="nav-link">
+                            <a href="/mu2tj" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>MU6-TJ</p>
+                                <p>MU2-TJ</p>
                             </a>
                         </li>
                     </ul>

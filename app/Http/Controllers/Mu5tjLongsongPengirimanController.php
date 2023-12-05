@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mu5tjLongsongDimensi;
 use App\Models\Mu5tjLongsongPengiriman;
 
 class Mu5tjLongsongPengirimanController extends Controller
@@ -15,5 +16,15 @@ class Mu5tjLongsongPengirimanController extends Controller
     public function create()
     {
         return view('mu5tj_longsong_pengiriman_create');
+    }
+
+    public function viewSinglePost(Mu5tjLongsongPengiriman $mu5tj)
+    {
+        $parentId = $mu5tj->parent_id;
+        $dataSpecDimensi = Mu5tjLongsongDimensi::query()->with(['spec'])->where('parent_id', $parentId)->get();
+        return view('mu5tj_longsong_pengiriman_detail', [
+            'mu5tj' => $mu5tj,
+            'specDimensi' => $dataSpecDimensi
+        ]);
     }
 }

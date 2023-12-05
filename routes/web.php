@@ -44,6 +44,7 @@ Route::prefix('5mm')->group(function () {
 
             Route::get('/pengiriman', [Mu5tjLongsongPengirimanController::class, 'getAll'])->middleware('mustBeLoggedIn');
             Route::get('/pengiriman/create', [Mu5tjLongsongPengirimanController::class, 'create'])->middleware('mustBeLoggedIn');
+            Route::get('/pengiriman/{mu5tj}/detail', [Mu5tjLongsongPengirimanController::class, 'viewSinglePost'])->where('mu5tj', '[0-9]+')->middleware('mustBeLoggedIn');
         });
     });
 

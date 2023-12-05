@@ -60,11 +60,11 @@ class Mu5tjHb2Wizard extends Component
         $conditionTitik24 = $this->conditionTitik($this->titik_24, $titik2_min, $titik2_max);
         $conditionTitik25 = $this->conditionTitik($this->titik_25, $titik2_min, $titik2_max);
 
-        $conditionTitik31 = $this->conditionTitik($this->titik_21, $titik3_min, $titik3_max);
-        $conditionTitik32 = $this->conditionTitik($this->titik_22, $titik3_min, $titik3_max);
-        $conditionTitik33 = $this->conditionTitik($this->titik_23, $titik3_min, $titik3_max);
-        $conditionTitik34 = $this->conditionTitik($this->titik_24, $titik3_min, $titik3_max);
-        $conditionTitik35 = $this->conditionTitik($this->titik_25, $titik3_min, $titik3_max);
+        $conditionTitik31 = $this->conditionTitik($this->titik_31, $titik3_min, $titik3_max);
+        $conditionTitik32 = $this->conditionTitik($this->titik_32, $titik3_min, $titik3_max);
+        $conditionTitik33 = $this->conditionTitik($this->titik_33, $titik3_min, $titik3_max);
+        $conditionTitik34 = $this->conditionTitik($this->titik_34, $titik3_min, $titik3_max);
+        $conditionTitik35 = $this->conditionTitik($this->titik_35, $titik3_min, $titik3_max);
 
 
         $collection = collect([$conditionTitik11, $conditionTitik12, $conditionTitik13, $conditionTitik14, $conditionTitik15,

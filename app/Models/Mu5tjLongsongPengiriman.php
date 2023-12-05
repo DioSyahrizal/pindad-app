@@ -37,11 +37,11 @@ class Mu5tjLongsongPengiriman extends Model
 
     public function dimensi()
     {
-        return $this->hasOne(Mu5tjLongsongDimensi::class, 'parent_id', 'id')->where('mato', '=', 1);
+        return $this->hasOne(Mu5tjLongsongDimensi::class, 'parent_id', 'parent_id')->where('mato', '=', 1);
     }
 
     public function visuil()
     {
-        return $this->hasOne(Mu5tjLongsongVisuil::class, 'parent_id', 'id')->where('mato', '=', 1);
+        return $this->hasOne(Mu5tjLongsongVisuil::class, 'parent_id', 'parent_id')->where('mato', '=', 1);
     }
 }

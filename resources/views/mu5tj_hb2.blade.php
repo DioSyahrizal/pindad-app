@@ -38,8 +38,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $child->tanggal_create->format('d/m/Y') }}</td>
                                         <td>{{ $child->kodeLini->nama }}</td>
-                                        <td><a href="/5mm/mu5tj/longsong/hb-1/{{ $child->id }}/detail">{{ $child->no_lot
-                                                }}</a></td>
+                                        <td>{{ $child->no_lot}}</td>
                                         <td class="{{$child->status == 'PASSED' ? '!bg-green-400' : '!bg-red-400 text-white'}}">
                                             {{$child->status}}
                                         </td>
